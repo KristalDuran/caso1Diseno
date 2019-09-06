@@ -11,23 +11,22 @@ import java.util.ArrayList;
  *
  * @author kduran
  */
-public class Combo {
+public class Combo implements IPrototype<Combo>{
     private PlatoFuerte platoFuerte;
     private ArrayList<Adicional> adicionales;
     private ArrayList<Bebida> bebidas;
-
-    private Combo(PlatoFuerte platoFuerte, ArrayList<Adicional> adicionales, 
-            ArrayList<Bebida> bebidas) {
-        this.platoFuerte = platoFuerte;
-        this.adicionales = adicionales;
-        this.bebidas = bebidas;
-    }
 
     public Combo(PlatoFuerte platoFuerte) {
         this.platoFuerte = platoFuerte;
     }
     
     public Combo() {
+    }
+
+    Combo(PlatoFuerte platoFuerte, ArrayList<Adicional> adicionales, ArrayList<Bebida> bebidas) {
+        this.platoFuerte = platoFuerte;
+        this.adicionales = adicionales;
+        this.bebidas = bebidas;
     }
     
     public PlatoFuerte getPlatoFuerte() {
@@ -52,5 +51,41 @@ public class Combo {
 
     public void setBebidas(ArrayList<Bebida> bebidas) {
         this.bebidas = bebidas;
+    }
+    @Override
+    public String toString(){
+        String string = "Combo: ";
+        if (platoFuerte != null) {
+            string += platoFuerte.toString() + " ";
+        }
+        for (Adicional adicional : adicionales) {
+            string+= adicional.toString() + " ";
+            
+        }
+        for (Bebida bebida : bebidas) {
+            string+= bebida.toString() + " ";
+        }
+        
+        return string + "\n";
+    }
+
+    @Override
+    public Combo clone() {
+        System.out.println("Clone");
+        return new Combo(platoFuerte, adicionales, bebidas);
+    }
+
+    @Override
+    public Combo deepClone() {
+        ArrayList<Adicional> adicionalesClonados = new ArrayList<>();
+        for (Adicional adicionale : adicionales) {
+            adicionalesClonados.add(new Adicional(adicionale.getNombre(), adicionale.getPrecio(), adicionale.getCodigo()));
+        }
+        ArrayList<Bebida> bebidasClonados = new ArrayList<>();
+        for (Bebida bebida : bebidas) {
+            bebidasClonados.add(new Bebida(bebida.getNombre(), bebida.getPrecio(), bebida.getCodigo()));
+        }
+        return new Combo(new PlatoFuerte(platoFuerte.getNombre(), platoFuerte.getPrecio(), platoFuerte.getCodigo()),
+                adicionalesClonados, bebidasClonados);    
     }
 }

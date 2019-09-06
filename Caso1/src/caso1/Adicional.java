@@ -15,4 +15,10 @@ public class Adicional extends Producto{
         super(nombre, precio, codigo);
     }
     
+    @Override
+    public String toString(){
+        return super.getNombre() + " cod: " +
+                super.getCodigo() + " $" + 
+                super.getPrecio();
+    }
 }

@@ -6,44 +6,69 @@
 package caso1;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
  * @author kduran
  */
-public class Factory implements IFactory, IPrototype<Combo>{
-
+public class Factory implements IFactory{
+    
+    public static HashMap<Integer, Combo> combosPredefinidos = new HashMap<>();
+    
+    public HashMap<Integer, IPrototype> getCombosPredefinidos() {
+        return PrototypeFactory.prototypes;
+    }
+            
     @Override
     public Combo crearPedido(int numeroCombo, PlatoFuerte platoFuerte, ArrayList<Producto> productos) {
         //aca va el if
         
+        Combo combo;
         
-        PrototypeFactory proFactory = new PrototypeFactory();
-        
-        Combo clon = proFactory.getPrototype(1);
-        Combo combo = new Combo.ComboBuilder().addAdiciona(123, 123, "").build();
-        // en este caso quiero un combo ya existente
-        if (numeroCombo != 0) {
+        // Modificar combos predefinidos
+        if (numeroCombo != 0 && productos != null) {
+            combo = (Combo) PrototypeFactory.prototypes.get(numeroCombo);
+            ComboBuilder builder = new ComboBuilder();
+            builder.setPlaBuilder(combo.getPlatoFuerte());
+            for (Adicional producto : combo.getAdicionales()) {
+                builder.addAdiciona(producto.getCodigo(), producto.getPrecio(), producto.getNombre());
+            }
+            for (Bebida producto : combo.getBebidas()) {
+                builder.addBebida(producto.getCodigo(), producto.getPrecio(), producto.getNombre());
+            }
+            for (Producto producto : productos) {
+                if (producto instanceof Adicional) {
+                    builder.addAdiciona(producto.getCodigo(), producto.getPrecio(), producto.getNombre());
+                }else{
+                    builder.addBebida(producto.getCodigo(), producto.getPrecio(), producto.getNombre());
+                }
+            }            
+            return builder.build();
             
-            combo = proFactory.getPrototype(numeroCombo);
         }
-        if (platoFuerte != null) {
-            combo = new Combo.ComboBuilder().
-                    setPlaBuilder(platoFuerte).
-                    addAdiciona(123, 123, "").
-                    build();
+        
+        // En este caso quiero un combo ya existente
+        if (numeroCombo != 0) {
+            return PrototypeFactory.getCloneCombo(numeroCombo);
         }
+        
+        // Cuando creo un combo desde 0
+        if (platoFuerte != null || productos != null) {
+            ComboBuilder builder = new ComboBuilder();
+            builder.setPlaBuilder(platoFuerte);
+            for (Producto producto : productos) {
+                if (producto instanceof Adicional) {
+                    builder.addAdiciona(producto.getCodigo(), producto.getPrecio(), producto.getNombre());
+                }else{
+                    builder.addBebida(producto.getCodigo(), producto.getPrecio(), producto.getNombre());
+                }
+            }            
+            return builder.build();
+        }
+        // donde se define el metodo de clone y deepClone ------------------------------------------------------------------
+        
         return null;
-    }
-
-    @Override
-    public Combo clone() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Combo deepClone() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
