@@ -53,34 +53,4 @@ public class Combo {
     public void setBebidas(ArrayList<Bebida> bebidas) {
         this.bebidas = bebidas;
     }
-
-    public static class ComboBuilder implements IBuilder<Combo>{
-
-        private PlatoFuerte platoFuerte;
-        private ArrayList<Adicional> adicionales = new ArrayList<>();
-        private ArrayList<Bebida> bebidas = new ArrayList<>();
-
-        public ComboBuilder() {
-        }
-        
-        public ComboBuilder setPlaBuilder(PlatoFuerte platoFuerte){
-            this.platoFuerte = platoFuerte;
-            return this;
-        }
-        
-        public ComboBuilder addAdiciona(int codigo, int precio, String nombre){
-            adicionales.add(new Adicional(nombre, precio, codigo));
-            return this;
-        }
-        
-        public ComboBuilder addBebida(int codigo, int precio, String nombre){
-            bebidas.add(new Bebida(nombre, precio, codigo));
-            return this;
-        }
-        
-        @Override
-        public Combo build() {
-            return new Combo(platoFuerte, adicionales, bebidas);
-        }
-    }
 }

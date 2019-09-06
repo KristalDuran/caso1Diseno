@@ -17,22 +17,21 @@ public class Factory implements IFactory, IPrototype<Combo>{
     public Combo crearPedido(int numeroCombo, PlatoFuerte platoFuerte, ArrayList<Producto> productos) {
         //aca va el if
         
-        Combo combo = new Combo.ComboBuilder().build();
         
+        PrototypeFactory proFactory = new PrototypeFactory();
+        
+        Combo clon = proFactory.getPrototype(1);
+        Combo combo = new Combo.ComboBuilder().addAdiciona(123, 123, "").build();
+        // en este caso quiero un combo ya existente
         if (numeroCombo != 0) {
-            // se recorre cada uno para agregar uno nuevo si solo hay bebidas o si solo hay adicionales por separado si no hay ninguno entonces solo se usa prototype
-            combo = deepClone();
-            if (productos.equals(null)) {
-                for (Producto producto : productos) {
-                    combo.addBebida(producto.getCodigo(), producto.getPrecio(), producto.getNombre());
-                }
-            }
-            if (true) {
-                
-            }
-        }
-        if (true) {
             
+            combo = proFactory.getPrototype(numeroCombo);
+        }
+        if (platoFuerte != null) {
+            combo = new Combo.ComboBuilder().
+                    setPlaBuilder(platoFuerte).
+                    addAdiciona(123, 123, "").
+                    build();
         }
         return null;
     }

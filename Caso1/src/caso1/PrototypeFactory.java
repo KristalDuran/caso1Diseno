@@ -14,11 +14,12 @@ import java.util.HashMap;
 public class PrototypeFactory {
     private static HashMap<Integer, IPrototype> prototypes = new HashMap<>();
     
-    public static IPrototype getPrototype(Integer numeroCombo){
+    public Combo getPrototype(Integer numeroCombo){
         return prototypes.get(numeroCombo).clone();
     }
     
     public static void addPrototype(Integer numeroCombo, IPrototype prototype){
         prototypes.put(numeroCombo, prototype);
     }
+    
 }
