@@ -24,6 +24,8 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
      private boolean seleccionCombo;
      private boolean combOPlatoF;
      private boolean selectBebidas;
+     private int numCombo = 0;
+     private int numPlatoFuerte = 0;
      
    
 //no me sirve que reciba una lista de productos porque debo recorrerla innecesariamente
@@ -273,23 +275,23 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
         });
         getContentPane().add(pedir, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 530, 110, 40));
 
-        jLabel4.setText("Sandwich, refresco, patatas");
+        jLabel4.setText("pollo, refresco, papas");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, -1, -1));
 
-        jLabel5.setText("wrap,papas, refresco");
+        jLabel5.setText("hot dog, puré, gaseosa");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, -1, -1));
 
         jLabel6.setText("Hamburguesa, papas, refresco");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, -1, -1));
 
-        jLabel7.setText("pizza, maíz, refresco");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 160, -1, -1));
+        jLabel7.setText("wrap, papas, 3 leches, gaseosa");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, -1, -1));
 
-        jLabel8.setText("pollo, puré, refresco");
+        jLabel8.setText("pizza, gaseosa");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, -1, -1));
 
-        jLabel9.setText("hot dog, ensalada, refresco");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, -1, -1));
+        jLabel9.setText("sandwich, papas, 3 leches, gaseosa");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Gill Sans Ultra Bold Condensed", 0, 48)); // NOI18N
         jLabel10.setText("COMBOSTAR");
@@ -364,6 +366,7 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
         // TODO add your handling code here:
         seleccionCombo = true;
         combOPlatoF = true;
+        numCombo = 1;
         this.combo1.addActionListener(this);
         
     }//GEN-LAST:event_combo1ActionPerformed
@@ -372,6 +375,7 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
         // TODO add your handling code here:
         seleccionCombo = true;
         combOPlatoF = true;
+        numCombo = 2;
         this.combo2.addActionListener(this);
         
     }//GEN-LAST:event_combo2ActionPerformed
@@ -380,6 +384,7 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
         // TODO add your handling code here:
         seleccionCombo = true;
         combOPlatoF = true;
+        numCombo = 3;
         this.combo3.addActionListener(this);
         
     }//GEN-LAST:event_combo3ActionPerformed
@@ -388,6 +393,7 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
         // TODO add your handling code here:
         seleccionCombo = true;
         combOPlatoF = true;
+        numCombo = 4;
         this.combo4.addActionListener(this);
       
     }//GEN-LAST:event_combo4ActionPerformed
@@ -396,6 +402,7 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
         // TODO add your handling code here:
         seleccionCombo = true;
         combOPlatoF = true;
+        numCombo = 5;
         this.combo5.addActionListener(this);
       
         
@@ -405,6 +412,7 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
         // TODO add your handling code here:
         seleccionCombo = true;
         combOPlatoF = true;
+        numCombo = 6;
         this.combo6.addActionListener(this);
        
     }//GEN-LAST:event_combo6ActionPerformed
@@ -484,30 +492,35 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
     private void polloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_polloActionPerformed
         // TODO add your handling code here:
          combOPlatoF = true;
+         numPlatoFuerte = 2;
          this.pollo.addActionListener(this);
     }//GEN-LAST:event_polloActionPerformed
 
     private void sandwichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sandwichActionPerformed
         // TODO add your handling code here:
         combOPlatoF = false;
+         numPlatoFuerte = 5;
          this.sandwich.addActionListener(this);
     }//GEN-LAST:event_sandwichActionPerformed
 
     private void wrapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wrapActionPerformed
         // TODO add your handling code here:
         combOPlatoF = false;
+         numPlatoFuerte = 6;
          this.wrap.addActionListener(this);
     }//GEN-LAST:event_wrapActionPerformed
 
     private void pizzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pizzaActionPerformed
         // TODO add your handling code here:
         combOPlatoF = false;
+         numPlatoFuerte = 4;
          this.pizza.addActionListener(this);
     }//GEN-LAST:event_pizzaActionPerformed
 
     private void hamburguesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hamburguesaActionPerformed
         // TODO add your handling code here:
         combOPlatoF = false;
+         numPlatoFuerte = 1;
          this.hamburguesa.addActionListener(this);
           
     }//GEN-LAST:event_hamburguesaActionPerformed
@@ -515,6 +528,7 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
     private void hotdogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotdogActionPerformed
         // TODO add your handling code here:
         combOPlatoF = false;
+         numPlatoFuerte = 3;
          this.hotdog.addActionListener(this);
     }//GEN-LAST:event_hotdogActionPerformed
 
@@ -598,8 +612,8 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent ae) {
         if(combOPlatoF){ //este amiguito valida que solo se inserte un combo o un plato fuerte en la lista pedido 
-           if(seleccionCombo){
-                Combo comboSeleccionado = buscarCombo(ae.getClass().getName());
+           if(seleccionCombo){ // si esta en true es que seleccionó combo, false es platofuerte
+                Combo comboSeleccionado = buscarCombo(numCombo);
                 hamburguesa.disable();
                 pizza.disable();
                 pollo.disable();
@@ -609,10 +623,12 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
                 System.out.println("cancelamos los platos fuertes");
                 pedido = comboSeleccionado;
                 pedidos.add(pedido);
+                numCombo = 0;
                 
 
             }else{
-                PlatoFuerte platoFuerte = buscarPlatoFuerte(ae.getClass().getName());
+                PlatoFuerte platoFuerte = buscarPlatoFuerte(numPlatoFuerte);
+                System.out.println("name "+ae.getClass().getName());
                 combo1.disable();
                 combo2.disable();
                 combo3.disable();
@@ -622,6 +638,7 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
                 System.out.println("cancelamos los combos");
                 pedido.setPlatoFuerte(platoFuerte); 
                 pedidos.add(platofuerte);
+                numPlatoFuerte=0;
             }
            
             combOPlatoF = false;   
@@ -630,7 +647,12 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
             JOptionPane.showMessageDialog(null,"Solo puede agregar un combo o un plato fuerte");
         }
         if(ae.getSource().equals(pedir)){
-             Factory.crearPedido(pedido.getCodigo(), platofuerte, productos);
+            
+             /*Factory.crearPedido(pedido.getCodigo(), platofuerte, productos)){
+            
+            }*/
+                 
+  
              
       
         }
@@ -649,15 +671,41 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
     }
     
   
-    public Combo buscarCombo(String nombre){
-         return null;
-
+    public Combo buscarCombo(int cod){
+        for(int i = 0; i < Cliente.inventario.size(); i++){
+            if(Cliente.inventario.get(i) instanceof Combo){
+                Combo aux =(Combo) Cliente.inventario.get(i);
+                if(aux.getCodigo() == cod) {
+                    return aux;
+                }
+            }
+        }
+        return null;
     }
-    public PlatoFuerte buscarPlatoFuerte(String nombre){
+    public PlatoFuerte buscarPlatoFuerte(int cod){
+        for(int i = 0; i < Cliente.inventario.size(); i++){
+            if(Cliente.inventario.get(i) instanceof PlatoFuerte){
+                PlatoFuerte aux =(PlatoFuerte) Cliente.inventario.get(i);
+                if(aux.getCodigo() == cod) {
+                    return aux;
+                }
+            }
+            
+        }
          return null;
 
     }
     public Producto buscarProducto(String nombre){
+        for(int i = 0; i < Cliente.inventario.size(); i++){
+            if(Cliente.inventario.get(i) instanceof Producto){
+                ArrayList<Producto> products = (ArrayList<Producto>) Cliente.inventario.get(i);
+                for(Producto producto: products ){
+                    //falta definir con qué vamos a obtener el código de cada producto o el nombre para comparar e insertar
+                
+                }
+            }
+                
+        }
          return null;
 
     }
