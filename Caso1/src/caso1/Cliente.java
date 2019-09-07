@@ -68,7 +68,7 @@ public class Cliente {
         inventario.add(pf6);
         
         
-        PrototypeFactory.addCombo(1, (IPrototype) combo1);
+        PrototypeFactory.addCombo(1, combo1);
         PrototypeFactory.addCombo(2, (IPrototype) combo2);
         PrototypeFactory.addCombo(3, (IPrototype) combo3);
         PrototypeFactory.addCombo(4, (IPrototype) combo4);
