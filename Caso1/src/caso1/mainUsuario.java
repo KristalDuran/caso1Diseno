@@ -23,9 +23,10 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
      private ArrayList<Producto> productos;
      private boolean seleccionCombo;
      private boolean combOPlatoF;
-     private boolean selectBebidas;
      private int numCombo = 0;
      private int numPlatoFuerte = 0;
+     private int numProducto = 0;
+     Factory fac = new Factory();
      
    
 //no me sirve que reciba una lista de productos porque debo recorrerla innecesariamente
@@ -38,7 +39,8 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
         productos = new ArrayList<>();
         seleccionCombo = false;
         combOPlatoF = false;
-        selectBebidas = false;
+        
+        
         
     }
 
@@ -73,7 +75,6 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
         gaseosa = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         pagar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
         batido = new javax.swing.JButton();
         pedir = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -90,6 +91,8 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
         hamburguesa = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         hotdog = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -257,7 +260,6 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
             }
         });
         getContentPane().add(pagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 590, 110, 40));
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(946, 111, 375, 558));
 
         batido.setText("BATIDO");
         batido.addActionListener(new java.awt.event.ActionListener() {
@@ -349,6 +351,12 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
         });
         getContentPane().add(hotdog, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 610, 100, 80));
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 140, 370, 540));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -419,73 +427,86 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
 
     private void papasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_papasActionPerformed
         // TODO add your handling code here:
+        numProducto = 1;
         this.papas.addActionListener(this);
     }//GEN-LAST:event_papasActionPerformed
 
     private void uvasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uvasActionPerformed
         // TODO add your handling code here:
+        numProducto = 4;
         this.uvas.addActionListener(this);
     }//GEN-LAST:event_uvasActionPerformed
 
     private void patatasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patatasActionPerformed
         // TODO add your handling code here:
+        numProducto = 6;
          this.patatas.addActionListener(this);
     }//GEN-LAST:event_patatasActionPerformed
 
     private void maizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maizActionPerformed
         // TODO add your handling code here:
+        numProducto = 5;
         this.maiz.addActionListener(this);
     }//GEN-LAST:event_maizActionPerformed
 
     private void treslechesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_treslechesActionPerformed
         // TODO add your handling code here:
+        numProducto = 3;
         this.tresleches.addActionListener(this);
     }//GEN-LAST:event_treslechesActionPerformed
 
     private void ensaladaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ensaladaActionPerformed
         // TODO add your handling code here:
+        numProducto = 7;
         this.ensalada.addActionListener(this);
     }//GEN-LAST:event_ensaladaActionPerformed
 
     private void pureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pureActionPerformed
         // TODO add your handling code here:
+        numProducto = 2;
          this.pure.addActionListener(this);
     }//GEN-LAST:event_pureActionPerformed
 
     private void gaseosaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gaseosaActionPerformed
         // TODO add your handling code here:
-        selectBebidas = true;
+        
+        numProducto = 8;
         this.pure.addActionListener(this);
     }//GEN-LAST:event_gaseosaActionPerformed
 
     private void cafeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cafeActionPerformed
         // TODO add your handling code here:
-        selectBebidas = true;
+       
+        numProducto = 9;
         this.cafe.addActionListener(this);
     }//GEN-LAST:event_cafeActionPerformed
 
     private void teActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teActionPerformed
         // TODO add your handling code here:
-        selectBebidas = true;
+       
+        numProducto = 10;
         this.te.addActionListener(this);
     }//GEN-LAST:event_teActionPerformed
 
     private void naturalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_naturalActionPerformed
         // TODO add your handling code here:
-        selectBebidas = true;
+        
+        numProducto = 11;
          this.natural.addActionListener(this);
          
     }//GEN-LAST:event_naturalActionPerformed
 
     private void frozenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frozenActionPerformed
         // TODO add your handling code here:
-        selectBebidas = true;
+       
+        numProducto = 12;
         this.frozen.addActionListener(this);
     }//GEN-LAST:event_frozenActionPerformed
 
     private void batidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batidoActionPerformed
         // TODO add your handling code here:
-        selectBebidas = true;
+        
+        numProducto = 13;
         this.batido.addActionListener(this);
     }//GEN-LAST:event_batidoActionPerformed
 
@@ -592,7 +613,8 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton maiz;
     private javax.swing.JButton natural;
     private javax.swing.JButton pagar;
@@ -647,20 +669,16 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
             JOptionPane.showMessageDialog(null,"Solo puede agregar un combo o un plato fuerte");
         }
         if(ae.getSource().equals(pedir)){
-            
-             /*Factory.crearPedido(pedido.getCodigo(), platofuerte, productos)){
-            
-            }*/
-                 
+               
+             fac.crearPedido(pedido.getCodigo(), platofuerte, productos);
   
-             
-      
         }
         else if(ae.getSource().equals(pagar)){
             //RECORRA PEDIDOS Y SUME TODo, imprima en el panel
+            
             pedidos.clear();
         }else{
-            Producto producto = buscarProducto(ae.getClass().getName());
+            Producto producto = buscarProducto(numProducto);
             productos.add(producto);
             pedidos.add(producto);
         }
@@ -695,12 +713,14 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
          return null;
 
     }
-    public Producto buscarProducto(String nombre){
+    public Producto buscarProducto(int cod){
         for(int i = 0; i < Cliente.inventario.size(); i++){
             if(Cliente.inventario.get(i) instanceof Producto){
                 ArrayList<Producto> products = (ArrayList<Producto>) Cliente.inventario.get(i);
                 for(Producto producto: products ){
-                    //falta definir con qué vamos a obtener el código de cada producto o el nombre para comparar e insertar
+                    if(producto.getCodigo() == cod){
+                        return producto;
+                    }
                 
                 }
             }
