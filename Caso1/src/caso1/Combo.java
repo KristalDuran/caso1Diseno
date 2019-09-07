@@ -12,12 +12,14 @@ import java.util.ArrayList;
  * @author kduran
  */
 public class Combo {
+    private int codigo;
     private PlatoFuerte platoFuerte;
     private ArrayList<Adicional> adicionales;
     private ArrayList<Bebida> bebidas;
 
-    private Combo(PlatoFuerte platoFuerte, ArrayList<Adicional> adicionales, 
+    private Combo(int codigo, PlatoFuerte platoFuerte, ArrayList<Adicional> adicionales, 
             ArrayList<Bebida> bebidas) {
+        this.codigo = codigo;
         this.platoFuerte = platoFuerte;
         this.adicionales = adicionales;
         this.bebidas = bebidas;
@@ -53,4 +55,13 @@ public class Combo {
     public void setBebidas(ArrayList<Bebida> bebidas) {
         this.bebidas = bebidas;
     }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+    
 }
