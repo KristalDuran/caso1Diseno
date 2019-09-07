@@ -12,13 +12,13 @@ import java.util.HashMap;
  * @author kduran
  */
 public class PrototypeFactory {
-    private static HashMap<Integer, IPrototype> prototypes = new HashMap<>();
+    public static HashMap<Integer, IPrototype> prototypes = new HashMap<>();
     
-    public Combo getPrototype(Integer numeroCombo){
-        return prototypes.get(numeroCombo).clone();
+    public static Combo getCloneCombo(Integer numeroCombo){
+        return prototypes.get(numeroCombo).deepClone();
     }
     
-    public static void addPrototype(Integer numeroCombo, IPrototype prototype){
+    public static void addCombo(Integer numeroCombo, IPrototype prototype){
         prototypes.put(numeroCombo, prototype);
     }
     

@@ -31,6 +31,12 @@ public class Combo {
     
     public Combo() {
     }
+
+    Combo(PlatoFuerte platoFuerte, ArrayList<Adicional> adicionales, ArrayList<Bebida> bebidas) {
+        this.platoFuerte = platoFuerte;
+        this.adicionales = adicionales;
+        this.bebidas = bebidas;
+    }
     
     public PlatoFuerte getPlatoFuerte() {
         return platoFuerte;
