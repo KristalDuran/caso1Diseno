@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author kduran
  */
-public class Combo {
+public class Combo implements IPrototype<Combo>{
     private int codigo;
     private PlatoFuerte platoFuerte;
     private ArrayList<Adicional> adicionales;
@@ -68,6 +68,29 @@ public class Combo {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    @Override
+    public Combo clone() {
+        return new Combo(platoFuerte, adicionales, bebidas);
+    }
+
+    @Override
+    public Combo deepClone() {
+        PlatoFuerte plato = null;
+        if (platoFuerte != null) {
+            plato = new PlatoFuerte(platoFuerte.getNombre(), platoFuerte.getPrecio(), platoFuerte.getCodigo());
+        }
+        ArrayList<Adicional> newAdicionales = new ArrayList<>();
+        for (Adicional adicionale : adicionales) {
+            newAdicionales.add(new Adicional(adicionale.getNombre(), adicionale.getPrecio(), adicionale.getCodigo()));
+        }
+        ArrayList<Bebida> newBebidas = new ArrayList<>();
+        for (Bebida newBebida : bebidas) {
+            newBebidas.add(new Bebida(newBebida.getNombre(), newBebida.getPrecio(), newBebida.getCodigo()));
+        }
+        
+       return new Combo(plato, newAdicionales, newBebidas);
     }
     
 }

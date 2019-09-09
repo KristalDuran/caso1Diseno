@@ -22,8 +22,6 @@ public class Factory implements IFactory{
             
     @Override
     public Combo crearPedido(int numeroCombo, PlatoFuerte platoFuerte, ArrayList<Producto> productos) {
-        //aca va el if
-        
         Combo combo;
         
         // Modificar combos predefinidos

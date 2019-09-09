@@ -119,6 +119,9 @@ public class Cliente {
         products.add(b6);
         
         inventario.add(products);
+        
+        mainUsuario mainIntefaz = new mainUsuario();
+        mainIntefaz.setVisible(true);
     }
     
 }

@@ -650,7 +650,6 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
 
             }else{
                 PlatoFuerte platoFuerte = buscarPlatoFuerte(numPlatoFuerte);
-                System.out.println("name "+ae.getClass().getName());
                 combo1.disable();
                 combo2.disable();
                 combo3.disable();
@@ -675,17 +674,19 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
         }
         else if(ae.getSource().equals(pagar)){
             //RECORRA PEDIDOS Y SUME TODo, imprima en el panel
-            
+            pagar(); 
             pedidos.clear();
         }else{
             Producto producto = buscarProducto(numProducto);
             productos.add(producto);
             pedidos.add(producto);
+<<<<<<< HEAD
+            numProducto =0;
+=======
+            numProducto=0;
+>>>>>>> 5e58c130e6590a11957831356f57aae6b8d2c195
         }
         
-       
-        
-             
     }
     
   
@@ -729,5 +730,44 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
          return null;
 
     }
+    
+    public void pagar(){
+        int total=0;
+        for(int i = 0; i < Cliente.inventario.size(); i++){
+            if(pedidos.get(i) instanceof Combo){
+                Combo auxC = (Combo) pedidos.get(i);
+                jTextArea1.append("*Combo " + auxC.getCodigo()+ "*");
+                PlatoFuerte auxP = auxC.getPlatoFuerte();
+                ArrayList<Adicional> auxa = auxC.getAdicionales();
+                ArrayList<Bebida> auxb = auxC.getBebidas();
+                jTextArea1.append("Plato Fuerte " + auxP.getNombre() + "precio " + auxP.getPrecio());
+                total += auxP.getPrecio();
+                for(int j = 0; j < auxa.size(); j++){
+                    Adicional ad = auxa.get(j);
+                    total += ad.getPrecio();
+                    jTextArea1.append("Adicional " + ad.getNombre()+ " precio "+ad.getPrecio());
+                }
+                for(int k = 0; k < auxb.size(); k++){
+                    Bebida beb = auxb.get(k);
+                    total += beb.getPrecio();
+                    jTextArea1.append("Bebida " + beb.getNombre()+ " precio "+beb.getPrecio());
+                }   
+            }
+             if(pedidos.get(i) instanceof PlatoFuerte){
+                  PlatoFuerte auxPf = (PlatoFuerte) pedidos.get(i);
+                  total += auxPf.getPrecio();
+                  jTextArea1.append("Plato Fuerte " + auxPf.getNombre() + "precio " + auxPf.getPrecio());
+                
+            }
+              if(pedidos.get(i) instanceof Producto){
+                   Producto auxpr = (Producto) pedidos.get(i);
+                   total += auxpr.getPrecio();
+                   jTextArea1.append("Producto " + auxpr.getNombre() + "precio " + auxpr.getPrecio()); 
+                
+            }
+        }
+        
+    }
+    
     
 }
