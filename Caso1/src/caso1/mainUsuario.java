@@ -681,11 +681,9 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
             Producto producto = buscarProducto(numProducto);
             productos.add(producto);
             pedidos.add(producto);
+            numProducto=0;
         }
         
-       
-        
-             
     }
     
   
