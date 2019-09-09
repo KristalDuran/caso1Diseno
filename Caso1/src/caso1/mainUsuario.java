@@ -680,11 +680,6 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
             Producto producto = buscarProducto(numProducto);
             productos.add(producto);
             pedidos.add(producto);
-<<<<<<< HEAD
-            numProducto =0;
-=======
-            numProducto=0;
->>>>>>> 5e58c130e6590a11957831356f57aae6b8d2c195
         }
         
     }
