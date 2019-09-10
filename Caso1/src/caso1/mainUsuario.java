@@ -765,60 +765,6 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
      
    
     }
-    /*public Producto buscarProducto(int cod){
-        for(int i = 0; i < Cliente.inventario.size(); i++){
-            if(Cliente.inventario.get(i) instanceof Producto){
-                ArrayList<Producto> products = Producto Cliente.inventario.get(i);
-                for(Producto producto: products ){
-                    if(producto.getCodigo() == cod){
-                        return producto;
-                    }
-                
-                }
-            }
-                
-        }
-         return null;
 
-    }*/
-    
-    /*if(seleccionCombo){ // si esta en true es que seleccionó combo, false es platofuerte
-             Combo comboSeleccionado = buscarCombo(numCombo);
-             hamburguesa.disable();
-             pizza.disable();
-             pollo.disable();
-             hotdog.disable();
-             sandwich.disable();
-             wrap.disable();
-             System.out.println("cancelamos los platos fuertes");
-             pedido = comboSeleccionado;
-             pedidos.add(pedido);
-             combo1.disable();
-             combo2.disable();
-             combo3.disable();
-             combo4.disable();
-             combo5.disable();
-             combo6.disable();
-
-
-         }else if(!seleccionCombo){
-             platofuerte = buscarPlatoFuerte(numPlatoFuerte);
-             combo1.disable();
-             combo2.disable();
-             combo3.disable();
-             combo4.disable();
-             combo5.disable();
-             combo6.disable();
-             System.out.println("cancelamos los combos");
-             pedido.setPlatoFuerte(platofuerte); 
-             pedidos.add(platofuerte);
-             hamburguesa.disable();
-             pizza.disable();
-             pollo.disable();
-             hotdog.disable();
-             sandwich.disable();
-             wrap.disable();
-
-         }*/
     
 }
