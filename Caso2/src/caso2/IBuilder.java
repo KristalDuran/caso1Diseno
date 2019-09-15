@@ -9,14 +9,6 @@ package caso2;
  *
  * @author kduran
  */
-public class Caso2 {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        
-    }
-    
+public interface IBuilder <T>{
+    public T build();
 }
