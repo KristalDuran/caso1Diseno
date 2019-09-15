@@ -21,12 +21,11 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
      private PlatoFuerte platofuerte;
      private ArrayList<Object> pedidos;
      private ArrayList<Producto> productos;
-     private boolean seleccionCombo;
-     private boolean combOPlatoF;
      private int numCombo = 0;
      private int numPlatoFuerte = 0;
      private int numProducto = 0;
      Factory fac = new Factory();
+    
      
    
 //no me sirve que reciba una lista de productos porque debo recorrerla innecesariamente
@@ -35,10 +34,11 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
      */
     public mainUsuario() {
         initComponents();
+        //pedido = new Combo();
+        
         pedidos = new ArrayList<>();
         productos = new ArrayList<>();
-        seleccionCombo = false;
-        combOPlatoF = false;
+ 
         
         
         
@@ -372,8 +372,8 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
 
     private void combo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo1ActionPerformed
         // TODO add your handling code here:
-        seleccionCombo = true;
-        combOPlatoF = true;
+       
+ 
         numCombo = 1;
         this.combo1.addActionListener(this);
         
@@ -381,8 +381,7 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
 
     private void combo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo2ActionPerformed
         // TODO add your handling code here:
-        seleccionCombo = true;
-        combOPlatoF = true;
+       
         numCombo = 2;
         this.combo2.addActionListener(this);
         
@@ -390,8 +389,7 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
 
     private void combo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo3ActionPerformed
         // TODO add your handling code here:
-        seleccionCombo = true;
-        combOPlatoF = true;
+        
         numCombo = 3;
         this.combo3.addActionListener(this);
         
@@ -399,8 +397,7 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
 
     private void combo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo4ActionPerformed
         // TODO add your handling code here:
-        seleccionCombo = true;
-        combOPlatoF = true;
+      
         numCombo = 4;
         this.combo4.addActionListener(this);
       
@@ -408,8 +405,7 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
 
     private void combo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo5ActionPerformed
         // TODO add your handling code here:
-        seleccionCombo = true;
-        combOPlatoF = true;
+        
         numCombo = 5;
         this.combo5.addActionListener(this);
       
@@ -418,8 +414,7 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
 
     private void combo6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo6ActionPerformed
         // TODO add your handling code here:
-        seleccionCombo = true;
-        combOPlatoF = true;
+        
         numCombo = 6;
         this.combo6.addActionListener(this);
        
@@ -471,7 +466,7 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
         // TODO add your handling code here:
         
         numProducto = 8;
-        this.pure.addActionListener(this);
+        this.gaseosa.addActionListener(this);
     }//GEN-LAST:event_gaseosaActionPerformed
 
     private void cafeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cafeActionPerformed
@@ -512,43 +507,42 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
 
     private void polloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_polloActionPerformed
         // TODO add your handling code here:
-         combOPlatoF = true;
+        
          numPlatoFuerte = 2;
          this.pollo.addActionListener(this);
     }//GEN-LAST:event_polloActionPerformed
 
     private void sandwichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sandwichActionPerformed
         // TODO add your handling code here:
-        combOPlatoF = false;
+        
          numPlatoFuerte = 5;
          this.sandwich.addActionListener(this);
     }//GEN-LAST:event_sandwichActionPerformed
 
     private void wrapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wrapActionPerformed
         // TODO add your handling code here:
-        combOPlatoF = false;
+     
          numPlatoFuerte = 6;
          this.wrap.addActionListener(this);
     }//GEN-LAST:event_wrapActionPerformed
 
     private void pizzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pizzaActionPerformed
         // TODO add your handling code here:
-        combOPlatoF = false;
+        
          numPlatoFuerte = 4;
          this.pizza.addActionListener(this);
     }//GEN-LAST:event_pizzaActionPerformed
 
     private void hamburguesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hamburguesaActionPerformed
         // TODO add your handling code here:
-        combOPlatoF = false;
+       
          numPlatoFuerte = 1;
          this.hamburguesa.addActionListener(this);
           
     }//GEN-LAST:event_hamburguesaActionPerformed
 
     private void hotdogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotdogActionPerformed
-        // TODO add your handling code here:
-        combOPlatoF = false;
+        // TODO add your handling code
          numPlatoFuerte = 3;
          this.hotdog.addActionListener(this);
     }//GEN-LAST:event_hotdogActionPerformed
@@ -556,37 +550,7 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(mainUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(mainUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(mainUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(mainUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new mainUsuario().setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton batido;
@@ -633,99 +597,174 @@ public class mainUsuario extends javax.swing.JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if(combOPlatoF){ //este amiguito valida que solo se inserte un combo o un plato fuerte en la lista pedido 
-           if(seleccionCombo){ // si esta en true es que seleccionó combo, false es platofuerte
-                Combo comboSeleccionado = buscarCombo(numCombo);
-                hamburguesa.disable();
-                pizza.disable();
-                pollo.disable();
-                hotdog.disable();
-                sandwich.disable();
-                wrap.disable();
-                System.out.println("cancelamos los platos fuertes");
-                pedido = comboSeleccionado;
-                pedidos.add(pedido);
-                numCombo = 0;
-                
+        
+         if(ae.getSource().equals(combo1) || ae.getSource().equals(combo2) ||
+            ae.getSource().equals(combo3) || ae.getSource().equals(combo4) ||
+            ae.getSource().equals(combo5) || ae.getSource().equals(combo6)){
+             Combo comboselect = buscarCombo(numCombo);
+             hamburguesa.setEnabled(false);
+             pizza.setEnabled(false);
+             pollo.setEnabled(false);
+             hotdog.setEnabled(false);
+             sandwich.setEnabled(false);
+             wrap.setEnabled(false);
+             System.out.println("cancelamos los platos fuertes");
+             pedidos.add(comboselect);
+             pedido = comboselect;
+              System.out.println("imprimiendo lista pedidos "+pedidos);
+             combo1.setEnabled(false);
+             combo2.setEnabled(false);
+             combo3.setEnabled(false);
+             combo4.setEnabled(false);
+             combo5.setEnabled(false);
+             combo6.setEnabled(false);
+             
+             System.out.println("holaaa mundooo combos");
+         }
+         else if(ae.getSource().equals(hamburguesa) || ae.getSource().equals(pollo) ||
+                ae.getSource().equals(wrap) || ae.getSource().equals(sandwich) ||
+                ae.getSource().equals(hotdog) || ae.getSource().equals(pizza) ){
+                PlatoFuerte platof = buscarPlatoFuerte(numPlatoFuerte);
+                combo1.setEnabled(false);
+                combo2.setEnabled(false);
+                combo3.setEnabled(false);
+                combo4.setEnabled(false);
+                combo5.setEnabled(false);
+                combo6.setEnabled(false);
+                System.out.println("cancelamos los combos   " + platofuerte);
+                pedidos.add(platof);
+                platofuerte =platof;
+                System.out.println(""+pedidos);
+                hamburguesa.setEnabled(false);
+                pizza.setEnabled(false);
+                pollo.setEnabled(false);
+                hotdog.setEnabled(false);
+                sandwich.setEnabled(false);
+                wrap.setEnabled(false);
+                System.out.println("holaaa mundooo fuertes");
 
-            }else{
-                PlatoFuerte platoFuerte = buscarPlatoFuerte(numPlatoFuerte);
-                System.out.println("name "+ae.getClass().getName());
-                combo1.disable();
-                combo2.disable();
-                combo3.disable();
-                combo4.disable();
-                combo5.disable();
-                combo6.disable();
-                System.out.println("cancelamos los combos");
-                pedido.setPlatoFuerte(platoFuerte); 
-                pedidos.add(platofuerte);
-                numPlatoFuerte=0;
-            }
-           
-            combOPlatoF = false;   
         }
-        else {
-            JOptionPane.showMessageDialog(null,"Solo puede agregar un combo o un plato fuerte");
-        }
-        if(ae.getSource().equals(pedir)){
-               
+        else if(ae.getSource().equals(pedir)){
+            if(pedido!=null){
+             System.out.println("codigo combo"+pedido.getCodigo());  
              fac.crearPedido(pedido.getCodigo(), platofuerte, productos);
-  
+              System.out.println("pedido de combo + adicionales realizado" );
+            }else{
+                fac.crearPedido(0, platofuerte, productos);
+                System.out.println("pedido de plato fuerte + adicionales realizado" );
+            }
+            hamburguesa.setEnabled(true); 
+             pizza.setEnabled(true); 
+             pollo.setEnabled(true); 
+             hotdog.setEnabled(true); 
+             sandwich.setEnabled(true); 
+             wrap.setEnabled(true); 
+             combo1.setEnabled(true); 
+             combo2.setEnabled(true); 
+             combo3.setEnabled(true); 
+             combo4.setEnabled(true); 
+             combo5.setEnabled(true); 
+             combo6.setEnabled(true); 
+            pedido = null;
+            platofuerte=null;
+            productos.clear();
         }
         else if(ae.getSource().equals(pagar)){
             //RECORRA PEDIDOS Y SUME TODo, imprima en el panel
-            
+            pagar(); 
             pedidos.clear();
+            pedido = null;
+            platofuerte=null;
+            productos.clear();
         }else{
             Producto producto = buscarProducto(numProducto);
             productos.add(producto);
             pedidos.add(producto);
-            numProducto=0;
         }
+          imprimir();
         
     }
-    
-  
+   
     public Combo buscarCombo(int cod){
-        for(int i = 0; i < Cliente.inventario.size(); i++){
-            if(Cliente.inventario.get(i) instanceof Combo){
-                Combo aux =(Combo) Cliente.inventario.get(i);
-                if(aux.getCodigo() == cod) {
-                    return aux;
-                }
-            }
-        }
-        return null;
-    }
-    public PlatoFuerte buscarPlatoFuerte(int cod){
-        for(int i = 0; i < Cliente.inventario.size(); i++){
-            if(Cliente.inventario.get(i) instanceof PlatoFuerte){
-                PlatoFuerte aux =(PlatoFuerte) Cliente.inventario.get(i);
-                if(aux.getCodigo() == cod) {
-                    return aux;
-                }
+        for(Combo combo: Cliente.combos ){
+            if(combo.getCodigo() == cod){
+                return combo;
             }
             
-        }
-         return null;
+        } 
+        return null;
+    }
+
+    public PlatoFuerte buscarPlatoFuerte(int cod){
+        for(PlatoFuerte plato: Cliente.platosfuertes ){
+            if(plato.getCodigo() == cod){
+                return plato;
+            }
+            
+        } 
+        return null;
 
     }
     public Producto buscarProducto(int cod){
-        for(int i = 0; i < Cliente.inventario.size(); i++){
-            if(Cliente.inventario.get(i) instanceof Producto){
-                ArrayList<Producto> products = (ArrayList<Producto>) Cliente.inventario.get(i);
-                for(Producto producto: products ){
-                    if(producto.getCodigo() == cod){
-                        return producto;
-                    }
-                
-                }
+       
+        for(Producto producto: Cliente.products ){
+            if(producto.getCodigo() == cod){
+                return producto;
             }
-                
-        }
-         return null;
-
+            
+        } 
+        return null;
     }
+    
+    public void pagar(){
+        int total=0;
+        for(int i = 0; i < pedidos.size(); i++){
+            if(pedidos.get(i) instanceof Combo){
+                Combo auxC = (Combo) pedidos.get(i);
+                jTextArea1.append("*****Combo " + auxC.getCodigo()+ "*****" + '\n');
+                PlatoFuerte auxP = auxC.getPlatoFuerte();
+                ArrayList<Adicional> auxa = auxC.getAdicionales();
+                ArrayList<Bebida> auxb = auxC.getBebidas();
+                jTextArea1.append("Plato Fuerte " + auxP.getNombre() + " precio " + auxP.getPrecio()+ '\n');
+                total += auxP.getPrecio();
+                for(int j = 0; j < auxa.size(); j++){
+                    Adicional ad = auxa.get(j);
+                    total += ad.getPrecio();
+                    jTextArea1.append("Adicional " + ad.getNombre()+ " precio "+ad.getPrecio()+ '\n');
+                }
+                for(int k = 0; k < auxb.size(); k++){
+                    Bebida beb = auxb.get(k);
+                    total += beb.getPrecio();
+                    jTextArea1.append("Bebida " + beb.getNombre()+ " precio "+beb.getPrecio()+ '\n');
+                }   
+            }
+             if(pedidos.get(i) instanceof PlatoFuerte){
+                  PlatoFuerte auxPf = (PlatoFuerte) pedidos.get(i);
+                  total += auxPf.getPrecio();
+                  jTextArea1.append("*****Plato Fuerte***** " + auxPf.getNombre() + " precio " + auxPf.getPrecio()+ '\n');
+                
+            }
+              if(pedidos.get(i) instanceof Producto){
+                   Producto auxpr = (Producto) pedidos.get(i);
+                   total += auxpr.getPrecio();
+                   jTextArea1.append("Producto adicional " + auxpr.getNombre() + " precio " + auxpr.getPrecio()+ '\n'); 
+                
+            }
+        }
+         jTextArea1.append("total " + total); 
+    }
+    public void imprimir(){
+       
+        System.out.println("Combo "+ pedido);
+        System.out.println("plato fuerte "+ platofuerte);
+        System.out.println("pedidos lista "+ pedidos);
+        System.out.println("productos lista "+ productos);
+        System.out.println("num combo "+ numCombo);
+        System.out.println("num plato fuerte "+ numPlatoFuerte);
+        System.out.println("num producto "+ numProducto);
+     
+   
+    }
+
     
 }

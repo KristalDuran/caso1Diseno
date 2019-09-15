@@ -12,14 +12,24 @@ import java.util.ArrayList;
  * @author kduran
  */
 public class ComboBuilder implements IBuilder<Combo>{
-
+        
+        private int codigo;
         private PlatoFuerte platoFuerte;
         private ArrayList<Adicional> adicionales = new ArrayList<>();
         private ArrayList<Bebida> bebidas = new ArrayList<>();
 
         public ComboBuilder() {
         }
-        
+
+        public int getCodigo() {
+            return codigo;
+        }
+
+        public ComboBuilder setCodigo(int codigo) {
+            this.codigo = codigo;
+            return this;
+        }
+
         public ComboBuilder setPlaBuilder(PlatoFuerte platoFuerte){
             this.platoFuerte = platoFuerte;
             return this;
@@ -35,8 +45,9 @@ public class ComboBuilder implements IBuilder<Combo>{
             return this;
         }
         
+        
         @Override
         public Combo build() {
-            return new Combo(platoFuerte, adicionales, bebidas);
+            return new Combo(codigo, platoFuerte, adicionales, bebidas);
         }
     }

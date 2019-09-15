@@ -15,6 +15,7 @@ public class PlatoFuerte extends Producto{
         super(nombre, precio, codigo);
     }
     
+    
     @Override
     public String toString(){
         return super.getNombre() + " cod: " +

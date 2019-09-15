@@ -17,7 +17,7 @@ public class Combo implements IPrototype<Combo>{
     private ArrayList<Adicional> adicionales;
     private ArrayList<Bebida> bebidas;
 
-    private Combo(int codigo, PlatoFuerte platoFuerte, ArrayList<Adicional> adicionales, 
+    Combo(int codigo, PlatoFuerte platoFuerte, ArrayList<Adicional> adicionales, 
             ArrayList<Bebida> bebidas) {
         this.codigo = codigo;
         this.platoFuerte = platoFuerte;
@@ -90,7 +90,13 @@ public class Combo implements IPrototype<Combo>{
             newBebidas.add(new Bebida(newBebida.getNombre(), newBebida.getPrecio(), newBebida.getCodigo()));
         }
         
-       return new Combo(plato, newAdicionales, newBebidas);
+       return new Combo( plato, newAdicionales, newBebidas);  //que hago con el codigo de este?
     }
+
+    @Override
+    public String toString() {
+        return "Combo{" + "codigo=" + codigo + ", platoFuerte=" + platoFuerte + ", adicionales=" + adicionales + ", bebidas=" + bebidas + '}';
+    }
+    
     
 }

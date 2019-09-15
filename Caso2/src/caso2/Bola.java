@@ -14,7 +14,7 @@ import java.awt.geom.Ellipse2D;
  *
  * @author kduran
  */
-public class Bola {
+public class Bola implements IPrototype<Bola>{
     private Color color;
     private int direccion;
     private int velocidad;
@@ -116,5 +116,15 @@ public class Bola {
         }
 
     }
+   @Override
+    public Bola clone() {
+        return new Bola(this.color, this.direccion, this.velocidad);
+    }
+
+    @Override
+    public Bola deepClone() {
+        return clone();
+    }
+
     
 }
