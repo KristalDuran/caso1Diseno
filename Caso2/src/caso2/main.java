@@ -25,6 +25,7 @@ public class main {
         // TODO code application logic here
         
         ArrayList<Bola> bolasFactory = new ArrayList<>();   //esto es para probar el factory
+        ArrayList<Bola> bolasPool = new ArrayList<>();   //esto es para probar el object pool
         
         Bola b0 = new Bola(Color.pink, 45, 5);   
         Bola b1 = new Bola(Color.yellow, 0, 6);
@@ -58,6 +59,47 @@ public class main {
         
         
         System.out.println("cantidad de bolas en la lista: "+bolasFactory.size());
+        
+        
+        //pruebas de ObjectPool
+        System.out.println("eso son pruebas de pool");
+        
+        BolaPool pool = new BolaPool(100, 2000, Color.red, 180, 5);
+        pool.verTam();
+       
+        n =300;
+        Color color = Color.yellow;
+        int direccion = 45;
+        int velocidad = 8;
+        
+         for(int z=0; z < n; z++){
+             Bola aux = pool.getObject();
+             if( aux != null){
+                 aux.setColor(color);
+                 aux.setDireccion(direccion);
+                 aux.setVelocidad(velocidad);
+                 //System.out.println(""+aux.toString());
+             }else{
+                 aux=pool.NewInstanceBola(color, direccion, velocidad);
+                 
+             }
+             bolasPool.add(aux);
+            
+         
+         }
+         System.out.println("estoy usando las instancias");
+            System.out.println(" tamanno de la lista "+bolasPool.size());
+            System.out.println("estoy usando las instancias");
+            System.out.println("ya las usé");
+            System.out.println("las devuelvo");
+            
+         
+         int m = 150;
+         for(int y=m; y < bolasPool.size(); y++){
+             pool.releaceObject(bolasPool.get(y));
+         
+         }
+         pool.verTam();
         
         Frame frame = new Frame(view);
         frame.setVisible(true);
