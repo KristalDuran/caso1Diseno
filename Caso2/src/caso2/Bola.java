@@ -56,6 +56,11 @@ public class Bola implements IPrototype<Bola>{
         return clone();
     }
 
+    @Override
+    public String toString() {
+        return "Bola{" + "color=" + color + ", direccion=" + direccion + ", velocidad=" + velocidad + '}';
+    }
+
    
     
     

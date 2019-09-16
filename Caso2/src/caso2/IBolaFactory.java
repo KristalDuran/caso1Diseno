@@ -3,21 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tarea;
+package caso2;
+
+import java.awt.Color;
 
 /**
  *
  * @author raque
  */
-public class Tarea {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
-    
-    
-    
+public interface IBolaFactory {
+    public Bola createNew(Color color, int direccion, int velocidad);
 }
