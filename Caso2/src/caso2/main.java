@@ -17,15 +17,15 @@ import static javafx.scene.paint.Color.color;
 public class main {
     
       public final static ViewPanel view = new ViewPanel();
-
+      public final static ArrayList<Bola> bolasFactory = new ArrayList<>();   //esto es para probar el factory  
+      public final static ArrayList<Bola> bolasPool = new ArrayList<>();   //esto es para probar el object pool
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
         
-        ArrayList<Bola> bolasFactory = new ArrayList<>();   //esto es para probar el factory
-        ArrayList<Bola> bolasPool = new ArrayList<>();   //esto es para probar el object pool
+        
         
         Bola b0 = new Bola(Color.pink, 45, 5);   
         Bola b1 = new Bola(Color.yellow, 0, 6);
@@ -51,7 +51,6 @@ public class main {
         FactoryBola factory= new FactoryBola();
         for(int i=0; i<n; i++){
             bolasFactory.add(factory.crearBola(Color.cyan, 180, 8));
-            
         }
         
         //esto es para probar el prototype
@@ -78,7 +77,6 @@ public class main {
                  aux.setColor(color);
                  aux.setDireccion(direccion);
                  aux.setVelocidad(velocidad);
-                 //System.out.println(""+aux.toString());
              }else{
                  aux=pool.NewInstanceBola(color, direccion, velocidad);
                  

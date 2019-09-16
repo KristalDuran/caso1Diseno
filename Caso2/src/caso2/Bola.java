@@ -18,8 +18,8 @@ public class Bola implements IPrototype<Bola>{
     private Color color;
     private int direccion;
     private int velocidad;
-    private static final int Y_STEP = 5;
-    private static final int X_STEP = 5;
+    private static final int Y_STEP = 2;
+    private static final int X_STEP = 2;
     int x = (int)(Math.random()*389 + 1);
     int y = (int)(Math.random()*389 + 1);
     private String name = ""+x;
@@ -34,10 +34,28 @@ public class Bola implements IPrototype<Bola>{
     }
 
     public void move() {
-        newLocation.x += X_STEP;
-        newLocation.y += Y_STEP;
-        circle.getBounds().setLocation(new Point(newLocation.x, newLocation.y));           
+        switch(direccion){
+            case 0:
+                newLocation.x += 1;
+                newLocation.y = y;
+                break;
+            case 45:
+                newLocation.x -= 1;
+                newLocation.y += 1;
+                break;
+            case 90:
+                newLocation.x = x;
+                newLocation.y += 1;
+                break;
+            case 135:
+                newLocation.x += 1;
+                newLocation.y += 2;
+                break;
+        } 
+        circle = null;
+        circle = new Ellipse2D.Double(newLocation.x, newLocation.y, 5, 5);
     }
+    
     public Color getColor() {
         return color;
     }

@@ -56,9 +56,9 @@ public class ViewPanel extends JPanel {
         timer.stop();
     }
 
-    public void addShape(Bola shape) {
+    public void addShape(Bola shape,int time) {
         shapeList.add(shape);
-        DrawThread drawing = new  DrawThread(shape, this.getGraphics());
+        DrawThread drawing = new  DrawThread(shape, this.getGraphics(), time);
         Thread t = new Thread(drawing, shape.getName());
         t.start();
         this.repaint();
