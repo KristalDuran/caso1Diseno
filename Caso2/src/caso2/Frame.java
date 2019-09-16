@@ -6,26 +6,42 @@
 package caso2;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.RenderingHints;
+import java.awt.Shape;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.geom.Ellipse2D;
+import javafx.scene.shape.Circle;
+import javax.swing.JFrame;
+import javax.swing.Timer;
 
 /**
  *
  * @author kduran
  */
-public class Frame extends javax.swing.JFrame {
+public class Frame extends javax.swing.JFrame implements ActionListener{
+    Timer tm=new Timer(1200, this);
     private int cantidad;
     private Color color;
     private int direccion;
     private int velocidad;
     private int patron;
+    ViewPanel view;
     /**
      * Creates new form Frame
      */
     public Frame() {
         initComponents();
+        view = new ViewPanel(this);
+//        Shape circle = new Ellipse2D.Double(100, 100, 10, 10);
+//        CustomShape custom = new CustomShape(circle, color, "uno");
+//        view.addShape(custom);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        System.out.println("w " + jPanel1.getWidth() + " h " + jPanel1.getHeight() +
+//                " x " +jPanel1.getX() + " y " + jPanel1.getY());
     }
 
     /**
@@ -37,7 +53,6 @@ public class Frame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         direccionCB = new javax.swing.JComboBox<>();
         velocidadCB = new javax.swing.JComboBox<>();
@@ -50,20 +65,6 @@ public class Frame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel1.setBackground(new java.awt.Color(199, 199, 199));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 422, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 397, Short.MAX_VALUE)
-        );
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -146,9 +147,7 @@ public class Frame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGap(48, 528, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
             .addGroup(layout.createSequentialGroup()
@@ -161,10 +160,8 @@ public class Frame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
@@ -180,9 +177,18 @@ public class Frame extends javax.swing.JFrame {
         cantidad = Integer.parseInt(cantidadTF.getText());
         color = getColorNumber(coloCB.getSelectedItem().toString());
         velocidad = getVelocidad(velocidadCB.getSelectedItem().toString());
-        System.out.println();
+        direccion = getDireccion(direccionCB.getSelectedItem().toString());
+        patron = getPatron(patronCB.getSelectedItem().toString());
+        System.out.println("" + patron);
+        creator.creaBolas(patron, cantidad, velocidad, color, direccion, view);
+//        System.out.println();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
+    
+    private Creador creator = new Creador();
+    
     /**
      * @param args the command line arguments
      */
@@ -214,7 +220,6 @@ public class Frame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Frame().setVisible(true);
-                
             }
         });
     }
@@ -222,6 +227,22 @@ public class Frame extends javax.swing.JFrame {
 // TODO, insertar un grafic en un panel desde aca para poner los puntos, o intentar crearlo y lueo ponerlo en el de aca
     // metodo que verifique 
 
+//    public void paint(Graphics g) {
+// 
+//  Graphics2D g2d = (Graphics2D)g;
+// 
+//  int x = 100;
+// 
+//  int y = 100;
+//
+////  g2d.drawOval(x, y, 10, 10); 
+////  g2d.drawOval(120, y, 10, 10); 
+////        for (int i = 0; i < 10; i++) {
+////            g2d.drawOval(120+(i*10), y, 10, 10);
+////        }
+//        jPanel1.paintComponents(g2d);
+//}
+    
     
     private Color getColorNumber(String name){
         switch(name) {
@@ -273,6 +294,43 @@ public class Frame extends javax.swing.JFrame {
           }
     } 
     
+    private int getDireccion(String direccion){
+        switch(direccion) {
+            case "Direccion 0º":
+              return 0;
+            case "Direccion 45º":
+              return 45;
+            case "Direccion 90º":
+              return 90;
+            case "Direccion 135º":
+              return 135;
+            case "Direccion 180º":
+              return 180;
+            case "Direccion 225º":
+              return 225;
+            case "Direccion 270º":
+              return 270;
+            case "Direccion 315º":
+              return 315;
+            default:
+                return 0;
+          }
+    } 
+     public int getPatron(String patron) {
+         switch(patron) {
+            case "Prototype":
+              return 1;
+            case "Factory Method":
+              return 2;
+            case "Builder":
+              return 3;
+            case "Object Pool":
+              return 4;
+            default:
+                return 0;
+          }
+     }
+     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cantidadTF;
     private javax.swing.JComboBox<String> coloCB;
@@ -280,9 +338,13 @@ public class Frame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JComboBox<String> patronCB;
     private javax.swing.JComboBox<String> velocidadCB;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
