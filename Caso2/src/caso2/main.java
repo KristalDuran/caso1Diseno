@@ -14,9 +14,9 @@ import static javafx.scene.paint.Color.color;
  *
  * @author kduran
  */
-public class Caso2 {
+public class main {
     
-      
+      public final static ViewPanel view = new ViewPanel();
 
     /**
      * @param args the command line arguments
@@ -59,6 +59,8 @@ public class Caso2 {
         
         System.out.println("cantidad de bolas en la lista: "+bolasFactory.size());
         
+        Frame frame = new Frame(view);
+        frame.setVisible(true);
     }
     
 }

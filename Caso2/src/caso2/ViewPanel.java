@@ -6,13 +6,11 @@
 package caso2;
 
 import java.awt.Color;
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -23,17 +21,18 @@ public class ViewPanel extends JPanel {
     private Map<String, Thread> threads = new HashMap<String, Thread>();
     private Timer timer;
     private static final int TIMER_SPEED = 1000;
-
-    public ViewPanel(JFrame jFrame) {
+    JFrame jFrame;
+    
+    public ViewPanel() {
+        
         super();
+        setLayout(null);
         this.setSize(420, 420);
         this.setBounds(80, 130, 400, 400);
 //        this.frame = frame;
         this.setBackground(Color.CYAN);
-        jFrame.add(this);
         this.setDoubleBuffered(true);
         timer = new Timer(TIMER_SPEED, null);
-
         timer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -59,21 +58,23 @@ public class ViewPanel extends JPanel {
 
     public void addShape(Bola shape) {
         shapeList.add(shape);
-//        if (!threads.containsKey(shape.getName())) {
-            Thread t = new Thread(new DrawThread(shape, this.getGraphics()),
-                    shape.getName());
-//            threads.put(shape.getName(), t);
-            t.start();
-//        }
+        DrawThread drawing = new  DrawThread(shape, this.getGraphics());
+        Thread t = new Thread(drawing, shape.getName());
+        t.start();
         this.repaint();
     }
 
-    public void removeShape(CustomShape shape) {
+    public void removeShape(Bola shape) {
         if (threads.containsKey(shape.getName())) {
             Thread t = threads.remove(shape.getName());
             t.interrupt();
             shapeList.remove(shape);
         }
         this.repaint();
+    }
+    
+    public void setFrame (JFrame jFrame){
+        this.jFrame = jFrame;
+        this.jFrame.add(this);
     }
 }

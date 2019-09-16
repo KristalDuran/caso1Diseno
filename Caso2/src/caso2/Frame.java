@@ -6,42 +6,29 @@
 package caso2;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Shape;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.geom.Ellipse2D;
-import javafx.scene.shape.Circle;
 import javax.swing.JFrame;
-import javax.swing.Timer;
 
 /**
  *
  * @author kduran
  */
-public class Frame extends javax.swing.JFrame implements ActionListener{
-    Timer tm=new Timer(1200, this);
+public class Frame extends javax.swing.JFrame {
     private int cantidad;
     private Color color;
     private int direccion;
     private int velocidad;
     private int patron;
-    ViewPanel view;
+    private ViewPanel view;
+    private final Creador creator = new Creador();
+    
     /**
      * Creates new form Frame
      */
-    public Frame() {
+    public Frame(ViewPanel view) {
+        this.view = view;
         initComponents();
-        view = new ViewPanel(this);
-//        Shape circle = new Ellipse2D.Double(100, 100, 10, 10);
-//        CustomShape custom = new CustomShape(circle, color, "uno");
-//        view.addShape(custom);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        System.out.println("w " + jPanel1.getWidth() + " h " + jPanel1.getHeight() +
-//                " x " +jPanel1.getX() + " y " + jPanel1.getY());
+        this.view.setFrame(this);
     }
 
     /**
@@ -173,77 +160,15 @@ public class Frame extends javax.swing.JFrame implements ActionListener{
     }//GEN-LAST:event_direccionCBActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
         cantidad = Integer.parseInt(cantidadTF.getText());
         color = getColorNumber(coloCB.getSelectedItem().toString());
         velocidad = getVelocidad(velocidadCB.getSelectedItem().toString());
         direccion = getDireccion(direccionCB.getSelectedItem().toString());
         patron = getPatron(patronCB.getSelectedItem().toString());
-        System.out.println("" + patron);
         creator.creaBolas(patron, cantidad, velocidad, color, direccion, view);
-//        System.out.println();
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
-    
-    private Creador creator = new Creador();
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Frame().setVisible(true);
-            }
-        });
-    }
-    
-// TODO, insertar un grafic en un panel desde aca para poner los puntos, o intentar crearlo y lueo ponerlo en el de aca
-    // metodo que verifique 
-
-//    public void paint(Graphics g) {
-// 
-//  Graphics2D g2d = (Graphics2D)g;
-// 
-//  int x = 100;
-// 
-//  int y = 100;
-//
-////  g2d.drawOval(x, y, 10, 10); 
-////  g2d.drawOval(120, y, 10, 10); 
-////        for (int i = 0; i < 10; i++) {
-////            g2d.drawOval(120+(i*10), y, 10, 10);
-////        }
-//        jPanel1.paintComponents(g2d);
-//}
-    
-    
     private Color getColorNumber(String name){
         switch(name) {
             case "Rojo":
@@ -316,7 +241,8 @@ public class Frame extends javax.swing.JFrame implements ActionListener{
                 return 0;
           }
     } 
-     public int getPatron(String patron) {
+    
+    public int getPatron(String patron) {
          switch(patron) {
             case "Prototype":
               return 1;
@@ -343,8 +269,4 @@ public class Frame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JComboBox<String> velocidadCB;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

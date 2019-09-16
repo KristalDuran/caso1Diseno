@@ -23,9 +23,12 @@ public class DrawThread implements Runnable {
     public DrawThread(Bola shape, Graphics g) {
         this.shape = shape;
         this.g2d = (Graphics2D)g;
+    }
+    
+    public void setJPanel (JPanel jPanel){
         this.jPanel = jPanel;
     }
-
+    
     @Override
     public void run() {
         while (true) {
@@ -34,7 +37,6 @@ public class DrawThread implements Runnable {
                 g2d.setColor(shape.getColor());
                 g2d.draw(shape.getCircle());
                 shape.move();
-                jPanel.repaint();
             } catch (InterruptedException e) {
                 System.out.println(String.format("interrupt %s", Thread
                         .currentThread().getName()));

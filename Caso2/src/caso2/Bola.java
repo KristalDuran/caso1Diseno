@@ -30,6 +30,7 @@ public class Bola implements IPrototype<Bola>{
         this.color = color;
         this.direccion = direccion;
         this.velocidad = velocidad;
+        
     }
 
     public void move() {
