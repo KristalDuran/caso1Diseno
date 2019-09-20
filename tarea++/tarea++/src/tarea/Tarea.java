@@ -68,7 +68,7 @@ public class Tarea {
         
         
         //prueba para el banco Z
-        System.out.println("****solicitud de crédito al bank X****");
+        System.out.println("****solicitud de crédito al bank Z****");
         request.setCustomer("Eduardo Ramirez");
         request.setAmount(11000.300);
         

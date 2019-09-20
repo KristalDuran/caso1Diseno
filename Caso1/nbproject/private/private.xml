@@ -2,20 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/Users/kduran/Desktop/caso1Diseno/Caso1/src/caso1/Adicional.java</file>
-            <file>file:/Users/kduran/Desktop/caso1Diseno/Caso1/src/caso1/Bebida.java</file>
-            <file>file:/Users/kduran/Desktop/caso1Diseno/Caso1/src/caso1/IFactory.java</file>
-            <file>file:/Users/kduran/Desktop/caso1Diseno/Caso1/src/caso1/FINALS.java</file>
-            <file>file:/Users/kduran/Desktop/caso1Diseno/Caso1/src/caso1/Factory.java</file>
-            <file>file:/Users/kduran/Desktop/caso1Diseno/Caso1/src/caso1/IPrototype.java</file>
-            <file>file:/Users/kduran/Desktop/caso1Diseno/Caso1/src/caso1/ComboBuilder.java</file>
-            <file>file:/Users/kduran/Desktop/caso1Diseno/Caso1/src/caso1/PlatoFuerte.java</file>
-            <file>file:/Users/kduran/Desktop/caso1Diseno/Caso1/src/caso1/PrototypeFactory.java</file>
-            <file>file:/Users/kduran/Desktop/caso1Diseno/Caso1/src/caso1/mainUsuario.java</file>
-            <file>file:/Users/kduran/Desktop/caso1Diseno/Caso1/src/caso1/Combo.java</file>
-            <file>file:/Users/kduran/Desktop/caso1Diseno/Caso1/src/caso1/Cliente.java</file>
-            <file>file:/Users/kduran/Desktop/caso1Diseno/Caso1/src/caso1/IBuilder.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

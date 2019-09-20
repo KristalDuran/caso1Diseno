@@ -25,8 +25,9 @@ public class BankZAdapter implements IAdapter {
                 response.setApproval(true);
                 
             }
-            
+            //response.setApproval(false);
         } catch (AdapterException e) {
+            
             System.out.println("Error ==> " + e.getMessage());
             e.printStackTrace();
         }
