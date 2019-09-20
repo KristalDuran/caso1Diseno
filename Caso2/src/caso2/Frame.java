@@ -6,42 +6,29 @@
 package caso2;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Shape;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.geom.Ellipse2D;
-import javafx.scene.shape.Circle;
 import javax.swing.JFrame;
-import javax.swing.Timer;
 
 /**
  *
  * @author kduran
  */
-public class Frame extends javax.swing.JFrame implements ActionListener{
-    Timer tm=new Timer(1200, this);
+public class Frame extends javax.swing.JFrame {
     private int cantidad;
     private Color color;
     private int direccion;
     private int velocidad;
     private int patron;
-    ViewPanel view;
+    private ViewPanel view;
+    private final Creador creator = new Creador();
+    
     /**
      * Creates new form Frame
      */
-    public Frame() {
+    public Frame(ViewPanel view) {
+        this.view = view;
         initComponents();
-        view = new ViewPanel(this);
-//        Shape circle = new Ellipse2D.Double(100, 100, 10, 10);
-//        CustomShape custom = new CustomShape(circle, color, "uno");
-//        view.addShape(custom);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        System.out.println("w " + jPanel1.getWidth() + " h " + jPanel1.getHeight() +
-//                " x " +jPanel1.getX() + " y " + jPanel1.getY());
+        this.view.setFrame(this);
     }
 
     /**
@@ -62,6 +49,7 @@ public class Frame extends javax.swing.JFrame implements ActionListener{
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -142,25 +130,34 @@ public class Frame extends javax.swing.JFrame implements ActionListener{
         jLabel1.setFont(new java.awt.Font("Malayalam MN", 0, 48)); // NOI18N
         jLabel1.setText("Bolas Locas");
 
+        jLabel2.setText("Tiempo: 0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 528, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(272, 272, 272)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(292, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(217, 217, 217))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -173,77 +170,19 @@ public class Frame extends javax.swing.JFrame implements ActionListener{
     }//GEN-LAST:event_direccionCBActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
         cantidad = Integer.parseInt(cantidadTF.getText());
         color = getColorNumber(coloCB.getSelectedItem().toString());
         velocidad = getVelocidad(velocidadCB.getSelectedItem().toString());
         direccion = getDireccion(direccionCB.getSelectedItem().toString());
         patron = getPatron(patronCB.getSelectedItem().toString());
-        System.out.println("" + patron);
+        long lStartTime = System.nanoTime();
         creator.creaBolas(patron, cantidad, velocidad, color, direccion, view);
-//        System.out.println();
-        
+        long lEndTime = System.nanoTime();
+        long output = lEndTime - lStartTime;
+        jLabel2.setText("Tiempo: " + output / 1000000);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
-    
-    private Creador creator = new Creador();
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Frame().setVisible(true);
-            }
-        });
-    }
-    
-// TODO, insertar un grafic en un panel desde aca para poner los puntos, o intentar crearlo y lueo ponerlo en el de aca
-    // metodo que verifique 
-
-//    public void paint(Graphics g) {
-// 
-//  Graphics2D g2d = (Graphics2D)g;
-// 
-//  int x = 100;
-// 
-//  int y = 100;
-//
-////  g2d.drawOval(x, y, 10, 10); 
-////  g2d.drawOval(120, y, 10, 10); 
-////        for (int i = 0; i < 10; i++) {
-////            g2d.drawOval(120+(i*10), y, 10, 10);
-////        }
-//        jPanel1.paintComponents(g2d);
-//}
-    
-    
     private Color getColorNumber(String name){
         switch(name) {
             case "Rojo":
@@ -270,25 +209,25 @@ public class Frame extends javax.swing.JFrame implements ActionListener{
     private int getVelocidad(String velocidad){
         switch(velocidad) {
             case "Velocidad 1":
-              return 10000;
+              return 1100;
             case "Velocidad 2":
-              return 10000;
+              return 900;
             case "Velocidad 3":
-              return 10000;
+              return 800;
             case "Velocidad 4":
-              return 10000;
+              return 700;
             case "Velocidad 5":
-              return 10000;
+              return 600;
             case "Velocidad 6":
-              return 10000;
+              return 500;
             case "Velocidad 7":
-              return 10000;
+              return 400;
             case "Velocidad 8":
-              return 10000;
+              return 300;
             case "Velocidad 9":
-              return 10000;
+              return 200;
              case "Velocidad 10":
-              return 10000;
+              return 100;
             default:
                 return 0;
           }
@@ -305,18 +244,19 @@ public class Frame extends javax.swing.JFrame implements ActionListener{
             case "Direccion 135º":
               return 135;
             case "Direccion 180º":
-              return 180;
+              return 0;
             case "Direccion 225º":
-              return 225;
+              return 45;
             case "Direccion 270º":
-              return 270;
+              return 90;
             case "Direccion 315º":
-              return 315;
+              return 135;
             default:
                 return 0;
           }
     } 
-     public int getPatron(String patron) {
+    
+    public int getPatron(String patron) {
          switch(patron) {
             case "Prototype":
               return 1;
@@ -338,13 +278,10 @@ public class Frame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JComboBox<String> patronCB;
     private javax.swing.JComboBox<String> velocidadCB;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
