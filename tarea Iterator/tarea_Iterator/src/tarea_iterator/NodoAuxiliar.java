@@ -11,10 +11,10 @@ package tarea_iterator;
  */
 public class NodoAuxiliar implements INodo {
     private int id;
-    private NodoPrincipal anterior;
-    private NodoPrincipal siguiente;
+    private INodo anterior;
+    private INodo siguiente;
 
-    public NodoAuxiliar(int id, NodoPrincipal anterior, NodoPrincipal siguiente) {
+    public NodoAuxiliar(int id, INodo anterior, INodo siguiente) {
         this.id = id;
         this.anterior = anterior;
         this.siguiente = siguiente;
@@ -28,7 +28,7 @@ public class NodoAuxiliar implements INodo {
         this.id = id;
     }
 
-    public NodoPrincipal getAnterior() {
+    public INodo getAnterior() {
         return anterior;
     }
 
@@ -36,7 +36,7 @@ public class NodoAuxiliar implements INodo {
         this.anterior = anterior;
     }
 
-    public NodoPrincipal getSiguiente() {
+    public INodo getSiguiente() {
         return siguiente;
     }
 
@@ -45,13 +45,24 @@ public class NodoAuxiliar implements INodo {
     }
 
     @Override
+    public String toString() {
+        return "Id: " + this.id;
+    }
+    
+    @Override
     public boolean hasNext() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.siguiente != null) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public Object next() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.siguiente != null) {
+            return this.siguiente;
+        }
+        return null;
     }
 
     @Override

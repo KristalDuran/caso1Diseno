@@ -11,10 +11,10 @@ package tarea_iterator;
  */
 public class NodoPrincipal implements INodo{
     private int id;
-    private NodoAuxiliar arriba_derecha;
-    private NodoAuxiliar arriba_izquierda;
-    private NodoAuxiliar abajo_derecha;
-    private NodoAuxiliar abajo_izquierda;
+    private INodo arriba_derecha;
+    private INodo arriba_izquierda;
+    private INodo abajo_derecha;
+    private INodo abajo_izquierda;
 
     public NodoPrincipal(int id, NodoAuxiliar arriba_derecha, NodoAuxiliar arriba_izquierda, NodoAuxiliar abajo_derecha, NodoAuxiliar abajo_izquierda) {
         this.id = id;
@@ -23,7 +23,11 @@ public class NodoPrincipal implements INodo{
         this.abajo_derecha = abajo_derecha;
         this.abajo_izquierda = abajo_izquierda;
     }
-
+    
+    public NodoPrincipal(int id) {
+        this.id = id;
+    }
+    
     public int getId() {
         return id;
     }
@@ -32,55 +36,67 @@ public class NodoPrincipal implements INodo{
         this.id = id;
     }
 
-    public NodoAuxiliar getArriba_derecha() {
+    public INodo getArriba_derecha() {
         return arriba_derecha;
     }
 
-    public void setArriba_derecha(NodoAuxiliar arriba_derecha) {
+    public void setArriba_derecha(INodo arriba_derecha) {
         this.arriba_derecha = arriba_derecha;
     }
 
-    public NodoAuxiliar getArriba_izquierda() {
+    public INodo getArriba_izquierda() {
         return arriba_izquierda;
     }
 
-    public void setArriba_izquierda(NodoAuxiliar arriba_izquierda) {
+    public void setArriba_izquierda(INodo arriba_izquierda) {
         this.arriba_izquierda = arriba_izquierda;
     }
 
-    public NodoAuxiliar getAbajo_derecha() {
+    public INodo getAbajo_derecha() {
         return abajo_derecha;
     }
 
-    public void setAbajo_derecha(NodoAuxiliar abajo_derecha) {
+    public void setAbajo_derecha(INodo abajo_derecha) {
         this.abajo_derecha = abajo_derecha;
     }
 
-    public NodoAuxiliar getAbajo_izquierda() {
+    public INodo getAbajo_izquierda() {
         return abajo_izquierda;
     }
 
-    public void setAbajo_izquierda(NodoAuxiliar abajo_izquierda) {
+    public void setAbajo_izquierda(INodo abajo_izquierda) {
         this.abajo_izquierda = abajo_izquierda;
     }
 
     @Override
     public boolean hasNext() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.arriba_derecha != null || this.abajo_derecha != null) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public Object next() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (!arriba_derecha.equals(null)) {
+            System.out.println(arriba_derecha.toString());
+        }
+        if (!abajo_derecha.equals(null)) {
+            System.out.println(abajo_derecha.toString());
+            return abajo_derecha;
+        }else{
+            return arriba_derecha;
+        }
     }
 
     @Override
     public IIterator createIterator() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 
-  
-    
+    @Override
+    public String toString() {
+        return "principal " + id;
+    }
     
 }
