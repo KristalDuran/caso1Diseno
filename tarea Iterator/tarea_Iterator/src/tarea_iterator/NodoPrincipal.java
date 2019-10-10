@@ -5,6 +5,8 @@
  */
 package tarea_iterator;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author raque
@@ -22,6 +24,9 @@ public class NodoPrincipal implements INodo{
         this.arriba_izquierda = arriba_izquierda;
         this.abajo_derecha = abajo_derecha;
         this.abajo_izquierda = abajo_izquierda;
+    }
+
+    public NodoPrincipal() {
     }
     
     public NodoPrincipal(int id) {
@@ -68,35 +73,84 @@ public class NodoPrincipal implements INodo{
         this.abajo_izquierda = abajo_izquierda;
     }
 
-    @Override
-    public boolean hasNext() {
-        if (this.arriba_derecha != null || this.abajo_derecha != null) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public Object next() {
-        if (!arriba_derecha.equals(null)) {
-            System.out.println(arriba_derecha.toString());
-        }
-        if (!abajo_derecha.equals(null)) {
-            System.out.println(abajo_derecha.toString());
-            return abajo_derecha;
-        }else{
-            return arriba_derecha;
-        }
-    }
-
+    
     @Override
     public IIterator createIterator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new NodosIterator();
     }
 
     @Override
     public String toString() {
         return "principal " + id;
     }
-    
+    public class NodosIterator implements IIterator<INodo>{
+        private LinkedList<INodo> list = new LinkedList<INodo>();                    
+        private int index = 0;  
+        
+        
+        public NodosIterator() {                        
+          addRecursive(NodoPrincipal.this);
+          System.out.println("finish");
+        }
+
+      
+      
+        public void addRecursive(NodoPrincipal nodo) {
+            if(nodo.arriba_izquierda!=null && !list.contains(nodo.arriba_izquierda) && nodo.getId()==1){
+                list.add((INodo) nodo.arriba_izquierda);  
+            }
+            if(nodo.abajo_izquierda!=null && !list.contains(nodo.abajo_izquierda) && nodo.getId()==1 ){
+                list.add((INodo) nodo.abajo_izquierda);
+            }
+            if(!list.contains(nodo)){
+                list.add(nodo);
+            }
+            if(nodo.arriba_derecha!=null && !list.contains(nodo.arriba_derecha)){
+                list.add((INodo) nodo.arriba_derecha);
+            }
+            if(nodo.abajo_derecha!=null && !list.contains(nodo.abajo_derecha)){
+                list.add((INodo) nodo.abajo_derecha); 
+            }
+            //validarParaRecursividad(nodo);
+            if(nodo.arriba_derecha!=null){
+                NodoAuxiliar nodoA = (NodoAuxiliar) nodo.arriba_derecha;
+                addRecursive((NodoPrincipal) nodoA.getSiguiente());
+            }
+            
+        }                                
+        public void validarParaRecursividad(NodoPrincipal nodo){
+            if(nodo.arriba_derecha!=null){
+                NodoAuxiliar nodoB = (NodoAuxiliar) nodo.arriba_derecha;
+                addRecursive((NodoPrincipal) nodoB.getSiguiente());
+            }else{
+                //no sé porqué no sirve si pongo abajo derecha
+                if(nodo.abajo_derecha!=null){
+                    NodoAuxiliar nodoA = (NodoAuxiliar) nodo.abajo_derecha;
+                    addRecursive((NodoPrincipal) nodoA.getSiguiente());
+                }else{
+                   
+                    System.out.println("tenemos problemas, fin del comunicado");
+                }
+            }
+       
+        }
+        
+     
+        @Override
+        public boolean hasNext() {
+            if (list.isEmpty()) {                            
+                return false;                        
+            }
+            return index < list.size();
+        }
+
+        @Override
+        public INodo next() {
+            if (!hasNext()) {                            
+                throw new RuntimeException("No more elements");                        
+            }
+            return list.get(index++);  
+        }
+        
+    }
 }
