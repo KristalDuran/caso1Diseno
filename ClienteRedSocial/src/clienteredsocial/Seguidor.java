@@ -1,0 +1,78 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package clienteredsocial;
+
+import api.IObserver;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author kduran
+ */
+public class Seguidor implements IObserver{
+    
+    private int id;
+    private String nombre;
+    private ArrayList<String> mensajes;
+    private ArrayList<Celebridad> celebridades;
+    
+    public Seguidor(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+        this.mensajes = new ArrayList<>();
+        this.celebridades = new ArrayList<>();
+    }
+
+    public ArrayList<String> getMensajes() {
+        return mensajes;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+    
+    public ArrayList<Celebridad> getCelebrities(){
+        return this.celebridades;
+    }
+    
+    @Override
+    public void notify(String command, Object source) {
+        String mensaje = "";
+        if(command.equals(Controller.RECORD_LIKES)){
+            mensaje += "La celibridad " + " ha conseguido "+ " likes";
+        }if(command.equals(Controller.RECORD_SEGUIDORES)){
+            mensaje += "La celibridad " + " ha conseguido " + " seguidores";
+        }
+        if(!mensaje.equals("")){
+            Controller.sendMensajeFans(this, mensaje);
+            mensajes.add(mensaje);
+        }
+    }
+
+    public void seguir(Celebridad celebrity){
+        celebrity.addFan(this);
+        celebridades.add(celebrity);
+    }
+    
+    public void darLike(int idCelebridad, int idMensaje){
+        Celebridad celebridad = Controller.getCelebridad(id);
+        celebridad.getPostId(idMensaje).setLikes();
+    }
+    
+    public void darDisLike(int idCelebridad, int idMensaje){
+        Celebridad celebridad = Controller.getCelebridad(id);
+        celebridad.getPostId(idMensaje).setDislikes();
+    }
+    
+    @Override
+    public String toString() {
+        return "ID: " + id + " Nombre: " + nombre;
+    }
+}
