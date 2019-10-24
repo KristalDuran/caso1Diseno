@@ -20,6 +20,9 @@ public class NodoAuxiliar implements INodo {
         this.siguiente = siguiente;
     }
 
+    public NodoAuxiliar() {
+    }
+
     public int getId() {
         return id;
     }
@@ -49,25 +52,12 @@ public class NodoAuxiliar implements INodo {
         return "Id: " + this.id;
     }
     
-    @Override
-    public boolean hasNext() {
-        if (this.siguiente != null) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public Object next() {
-        if (this.siguiente != null) {
-            return this.siguiente;
-        }
-        return null;
-    }
+    
 
     @Override
     public IIterator createIterator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (IIterator) new NodoAuxiliar();
+        
     }
 
     

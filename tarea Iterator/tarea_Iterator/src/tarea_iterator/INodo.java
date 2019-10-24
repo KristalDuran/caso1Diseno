@@ -9,6 +9,6 @@ package tarea_iterator;
  *
  * @author raque
  */
-public interface INodo extends IIterator, IContainer {
+public interface INodo extends IContainer {
     
 }
