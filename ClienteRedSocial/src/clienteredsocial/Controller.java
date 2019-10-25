@@ -54,12 +54,7 @@ public class Controller {
         Celebridad celebridad = getCelebridad(idCelebridad);
         celebridad.addPost(message);
     }
-    
-    public static void like(int idSeguidor, int idMessage, int idCelebridad){
-        Seguidor seguidor = getFans(idSeguidor);
-        seguidor.darLike(idCelebridad, idMessage);
-    }
-    
+
     public static void dislike(int idSeguidor, int idMessage, int idCelebridad){
         Seguidor seguidor = getFans(idSeguidor);
         seguidor.darDisLike(idCelebridad, idMessage);

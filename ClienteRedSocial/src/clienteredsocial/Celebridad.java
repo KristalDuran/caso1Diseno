@@ -8,6 +8,7 @@ package clienteredsocial;
 import api.AbstractObservable;
 import api.IObservable;
 import api.IObserver;
+import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
 import java.util.ArrayList;
 
 /**
@@ -70,6 +71,10 @@ public class Celebridad extends AbstractObservable{
     
     public void addFan(Seguidor fan){
         fans.add(fan);
+        addObserver(fan);
+        if (fans.size()%10 == 0){
+            notifyAllObservers(Controller.RECORD_SEGUIDORES, null);
+        }
     }
     
     public ArrayList<Seguidor> getFans() {
@@ -80,6 +85,14 @@ public class Celebridad extends AbstractObservable{
         return id;
     }
 
+    public void likeMessage(Mensaje post){
+        System.out.println("Uno mas");
+        post.setLikes();
+        if (post.getLikes() > 1 && post.getLikes() % 10 == 0) {
+            notifyAllObservers(Controller.RECORD_LIKES, nombre);
+        }
+    }
+    
     @Override
     public String toString() {
         return nombre;

@@ -45,6 +45,7 @@ public class Seguidor implements IObserver{
     @Override
     public void notify(String command, Object source) {
         String mensaje = "";
+        System.out.println("Aquiiiiiiiii");
         if(command.equals(Controller.RECORD_LIKES)){
             mensaje += "La celibridad " + " ha conseguido "+ " likes";
         }if(command.equals(Controller.RECORD_SEGUIDORES)){
@@ -61,14 +62,14 @@ public class Seguidor implements IObserver{
         celebridades.add(celebrity);
     }
     
-    public void darLike(int idCelebridad, int idMensaje){
-        Celebridad celebridad = Controller.getCelebridad(id);
-        celebridad.getPostId(idMensaje).setLikes();
-    }
-    
     public void darDisLike(int idCelebridad, int idMensaje){
         Celebridad celebridad = Controller.getCelebridad(id);
         celebridad.getPostId(idMensaje).setDislikes();
+    }
+    
+    public void darLike(Mensaje message){
+        Celebridad celebridad = Controller.getCelebridad(message.getId());
+        celebridad.likeMessage(message);
     }
     
     @Override

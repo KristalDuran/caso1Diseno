@@ -9,6 +9,7 @@ import api.IObserver;
 
 public class Oferente implements IObserver{
 
+    public 
     public int idOferente;
     public String nombre;
     
@@ -22,8 +23,6 @@ public class Oferente implements IObserver{
     public void notify(String s, Object o) {
         System.out.println("Oferente: " + this.nombre + " la apuesta ha sido aumentada"); // ACCION A REALIZAR LUEGO DE QUE SE AUMENTA LA SUBASTA
     }
-    
-    
     
     public int getIdOferente(){
         
