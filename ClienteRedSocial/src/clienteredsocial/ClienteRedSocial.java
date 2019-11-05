@@ -6,12 +6,13 @@
 package clienteredsocial;
 
 import InterfazGrafica.Login;
+import api.AbstractServer;
 
 /**
  *
  * @author kduran
  */
-public class ClienteRedSocial {
+public class ClienteRedSocial{
 
     /**
      * @param args the command line arguments

@@ -5,11 +5,16 @@
  */
 package InterfazGrafica;
 
+import api.SocketMessage;
 import clienteredsocial.Celebridad;
 import clienteredsocial.Controller;
 import clienteredsocial.Mensaje;
+import clienteredsocial.RequestSocial;
 import clienteredsocial.Seguidor;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,13 +22,18 @@ import java.util.ArrayList;
  */
 public class redSocialFollower extends javax.swing.JFrame {
     Seguidor follower;
-    
+    Controller controller;
     /**
      * Creates new form redSocialSeguidor
      * @param follower
      */
     public redSocialFollower(Seguidor follower) {
         this.follower = follower;
+        try {
+            this.controller = new Controller();
+        } catch (IOException ex) {
+            Logger.getLogger(redSocialFollower.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
         setPosts();
         setCelebrities();
@@ -280,7 +290,9 @@ public class redSocialFollower extends javax.swing.JFrame {
             }
         }
         if (message != null){
-            follower.darLike(message);
+            RequestSocial req = new RequestSocial(message, null, null, -1);
+            SocketMessage socketM = new SocketMessage(follower, null, controller.LIKE, req);
+            controller.evaluete(socketM);
             setPosts();
         }
     }
@@ -295,7 +307,9 @@ public class redSocialFollower extends javax.swing.JFrame {
             }
         }
         if (message != null){
-            message.setDislikes();
+            RequestSocial req = new RequestSocial(message, null, null, -1);
+            SocketMessage socketM = new SocketMessage(follower, null, controller.DIS_LIKE, req);
+            controller.evaluete(socketM);
             setPosts();
         }
         jList1.getSelectedValuesList();
@@ -310,8 +324,8 @@ public class redSocialFollower extends javax.swing.JFrame {
             }
         }
         if (celebrity != null){
-            // validar que no la siga
-            follower.seguir(celebrity);
+            SocketMessage socketM = new SocketMessage(follower, celebrity, controller.FOLLOW, null);
+            controller.evaluete(socketM);
             setPosts();
         }
     }

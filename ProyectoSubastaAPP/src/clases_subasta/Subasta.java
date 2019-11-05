@@ -5,11 +5,12 @@
  */
 package clases_subasta;
 
-import api.IObservable;
+import api.AbstractServer;
 import api.IObserver;
+import api.SocketMessage;
 import java.util.ArrayList;
 
-public class Subasta implements IObservable {
+public class Subasta extends AbstractServer {
 
     private final ArrayList<IObserver> listaOferentes_Observadores;
     
@@ -83,19 +84,7 @@ public class Subasta implements IObservable {
     }
 
     @Override
-    public void addObserver(IObserver observer) {
-        listaOferentes_Observadores.add(observer);
-    }
-
-    @Override
-    public void removeObserver(IObserver observer) {
+    public void evaluete(SocketMessage socketMessage) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void notifyAllObservers(String command, Object source) {
-        listaOferentes_Observadores.forEach((ob) -> {
-            ob.notify(command, source);
-        });
     }
 }

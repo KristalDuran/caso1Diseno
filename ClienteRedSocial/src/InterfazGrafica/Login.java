@@ -5,18 +5,28 @@
  */
 package InterfazGrafica;
 
+import api.SocketMessage;
 import clienteredsocial.Controller;
+import clienteredsocial.RequestSocial;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author kduran
  */
 public class Login extends javax.swing.JFrame {
-
+    Controller controller;
     /**
      * Creates new form Login
      */
     public Login() {
+        try {
+            this.controller = new Controller();
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
     }
 
@@ -132,18 +142,24 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Controller.singInCelebrity(jTextField1.getText(), Integer.parseInt(jTextField2.getText()));
+        RequestSocial req = new RequestSocial(null, null, jTextField1.getText(), Integer.parseInt(jTextField2.getText()));
+        SocketMessage sokM = new SocketMessage(null, null, Controller.SING_IN_CELEBRITY, req);
+        controller.evaluete(sokM);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Controller.login(jTextField1.getText(), Integer.parseInt(jTextField2.getText()));
+        RequestSocial req = new RequestSocial(null, null, jTextField1.getText(), Integer.parseInt(jTextField2.getText()));
+        SocketMessage sokM = new SocketMessage(null, null, Controller.LOGIN, req);
+        controller.evaluete(sokM);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        Controller.singInFollower(jTextField1.getText(), Integer.parseInt(jTextField2.getText()));
+        RequestSocial req = new RequestSocial(null, null, jTextField1.getText(), Integer.parseInt(jTextField2.getText()));
+        SocketMessage sokM = new SocketMessage(null, null, Controller.SING_IN_FOLLOWER, req);
+        controller.evaluete(sokM);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

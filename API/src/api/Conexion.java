@@ -21,7 +21,7 @@ public class Conexion
 
     public Conexion(String tipo) throws IOException //Constructor
     {
-        if(tipo.equalsIgnoreCase("servidor"))
+        if(tipo.equalsIgnoreCase("server"))
         {
             ss = new ServerSocket(PUERTO);//Se crea el socket para el servidor en puerto 1234
             cs = new Socket(); //Socket para el cliente

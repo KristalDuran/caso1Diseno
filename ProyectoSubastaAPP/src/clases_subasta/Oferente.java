@@ -9,7 +9,6 @@ import api.IObserver;
 
 public class Oferente implements IObserver{
 
-    public 
     public int idOferente;
     public String nombre;
     

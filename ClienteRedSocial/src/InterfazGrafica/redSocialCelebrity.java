@@ -5,11 +5,16 @@
  */
 package InterfazGrafica;
 
+import api.SocketMessage;
 import clienteredsocial.Celebridad;
 import clienteredsocial.Controller;
 import clienteredsocial.Mensaje;
+import clienteredsocial.RequestSocial;
 import clienteredsocial.Seguidor;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,13 +22,18 @@ import java.util.ArrayList;
  */
 public class redSocialCelebrity extends javax.swing.JFrame {
     Celebridad celebrity;
-    
+    Controller controller;
     /**
      * Creates new form redSocialGrafica
      * @param celebrity
      */
     public redSocialCelebrity( Celebridad celebrity) {
         this.celebrity = celebrity;
+        try {
+            this.controller = new Controller();
+        } catch (IOException ex) {
+            Logger.getLogger(redSocialCelebrity.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
         this.setPosts();
         this.setFollower();
@@ -81,6 +91,11 @@ public class redSocialCelebrity extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTextArea1);
 
         jButton1.setText("Publicar mensaje");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Darse baja");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -168,7 +183,8 @@ public class redSocialCelebrity extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Controller.darseBaja(celebrity);
+        SocketMessage sock = new SocketMessage(null, celebrity, Controller.DARSE_BAJA, null);
+        controller.evaluete(sock);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -177,6 +193,11 @@ public class redSocialCelebrity extends javax.swing.JFrame {
         login.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        postMessage();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
     private void setPosts(){
@@ -205,6 +226,13 @@ public class redSocialCelebrity extends javax.swing.JFrame {
         }
     }
     
+    private void postMessage() {
+        String message = jTextArea1.getText();
+        RequestSocial req = new RequestSocial(null, message, null, -1);
+        SocketMessage sokM = new SocketMessage(null, celebrity, Controller.POST, req);
+        controller.evaluete(sokM);
+        setPosts();
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

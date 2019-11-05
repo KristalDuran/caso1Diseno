@@ -5,6 +5,8 @@
  */
 package clases_subasta;
 
+import api.IObserver;
+
 public class Subastador {
     
     public Subasta subastaEnCurso;
@@ -26,8 +28,7 @@ public class Subastador {
         this.subastaEnCurso = subasta;
     }
     
-    public void agregarOferenteASubasta(Oferente oferente){
-    
+    public void agregarOferenteASubasta(IObserver oferente){
         this.subastaEnCurso.addObserver(oferente);
     }
     
