@@ -9,6 +9,17 @@ package Command;
  *
  * @author kduran
  */
-public class Copy {
+public class Copy implements ICommand{
+    
+    private String text;
+
+    public Copy() {
+        this.text = text;
+    }
+    
+    @Override
+    public void execute() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

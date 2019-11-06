@@ -15,7 +15,6 @@ import SaveAs.Context;
 public class SaveAs implements ICommand{
     
     private Context context;
-
     private Text text;
 
     public SaveAs(Context context, Text text) {
