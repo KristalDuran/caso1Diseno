@@ -9,6 +9,11 @@ package Command;
  *
  * @author kduran
  */
-public class Paste {
+public class Paste implements ICommand{
+
+    @Override
+    public void execute() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

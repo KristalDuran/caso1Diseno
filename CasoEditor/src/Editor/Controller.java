@@ -6,9 +6,16 @@
 package Editor;
 
 import Command.Copy;
+import Command.Create;
+import Command.Cut;
 import Command.Invoker;
+import Command.Open;
 import Command.Paste;
-import java.util.ArrayList;
+import Command.Redo;
+import Command.Save;
+import Command.SaveAs;
+import Command.Undo;
+import SaveAs.*;
 
 /**
  *
@@ -17,51 +24,68 @@ import java.util.ArrayList;
 public class Controller {
     Invoker invoker;
     Text text;
-
+    ISaveAS saveAs;
+    Context context;
+    
     public Controller() {
         invoker = new Invoker();
         text = new Text();
+        context = new Context();
+    }
+
+    public Text getText() {
+        return text;
+    }
+
+    public void setSaveAs(String type){
+        switch(type) {
+            case "csv":
+                saveAs = new CSV();
+                break;
+            case "json":
+                saveAs = new JSON();
+                break;
+            case "txt":
+                saveAs = new TXT();
+                break;
+            case "xml":
+                saveAs = new XML();
+                break;
+        }
+        context.setSaveAs(saveAs);
     }
     
-    public void setCommand(String command, String text) {
+    public void execute(String command) {
         switch(command) {
             case "copy":
                 invoker.registerCommand(new Copy());
-                invoker.execute();
                 break;
             case "paste":
                 invoker.registerCommand(new Paste());
-                invoker.execute();
                 break;
             case "cut":
-                invoker.registerCommand(new Copy());
-                invoker.execute();
+                invoker.registerCommand(new Cut());
                 break;
             case "open":
-                invoker.registerCommand(new Copy());
-                invoker.execute();
+                invoker.registerCommand(new Open());
                 break;
             case "redo":
-                invoker.registerCommand(new Copy());
-                invoker.execute();
+                invoker.registerCommand(new Redo());
                 break;    
             case "undo":
-                invoker.registerCommand(new Copy());
-                invoker.execute();
+                invoker.registerCommand(new Undo());
                 break;
             case "save":
-                invoker.registerCommand(new Copy());
-                invoker.execute();
+                invoker.registerCommand(new Save(text));
                 break;
             case "saveAs":
-                invoker.registerCommand(new Copy());
-                invoker.execute();
+                invoker.registerCommand(new SaveAs(context, text));
                 break;
             case "new":
-                invoker.registerCommand(new Copy());
-                invoker.execute();
+                invoker.registerCommand(new Create());
                 break;
         }
+        invoker.execute();
     }
     
     

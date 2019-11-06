@@ -5,14 +5,22 @@
  */
 package Command;
 
+import Editor.Text;
+
 /**
  *
  * @author kduran
  */
 public class Save implements ICommand{
     
+    Text text;
+
+    public Save(Text text) {
+        this.text = text;
+    }
+    
     @Override
     public void execute() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 }

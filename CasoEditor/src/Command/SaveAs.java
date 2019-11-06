@@ -5,13 +5,26 @@
  */
 package Command;
 
+import Editor.Text;
+import SaveAs.Context;
+
 /**
  *
  * @author kduran
  */
 public class SaveAs implements ICommand{
+    
+    private Context context;
+
+    private Text text;
+
+    public SaveAs(Context context, Text text) {
+        this.context = context;
+        this.text = text;
+    }
+    
     @Override
     public void execute() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        context.save(text);
     }
 }
