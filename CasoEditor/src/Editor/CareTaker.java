@@ -16,9 +16,10 @@ public class CareTaker {
 
     public void addMemento(Memento m) {
         if(mementos.size()>20){
-            
+            mementos.remove(0);
+            mementos.add(m);
         }
-        mementos.add(m);
+        
     }
 
     public Memento getMemento() {

@@ -8,6 +8,9 @@ package casoeditor;
 import Editor.CareTaker;
 import Editor.Originator;
 import Editor.Text;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 
 /**
  *
@@ -18,8 +21,13 @@ public class CasoEditor {
     /**
      * @param args the command line arguments
      */
+    
+    public static CareTaker caretaker = new CareTaker();
+    
+    
     public static void main(String[] args) {
         // TODO code application logic here
+        
         
         /*CareTaker caretaker = new CareTaker();
         Originator originator = new Originator();
@@ -46,6 +54,21 @@ public class CasoEditor {
         caretaker.addMemento( originator.save() );
         originator.setState(text4);
         originator.restore( caretaker.getMemento() );*/
+        
+        Timer timer = new Timer(3000, new ActionListener(){
+               
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                //aqui va la accion de guardar un memento cada 3 segundos
+                //hacer un metodo para llamarlo aquí 
+            }
+            });
     }
+    //undo deshacer
+    //redo rehacer
+    //colocar el guardar estado despues de presionar cada boton
+    
+    
+    
     
 }
