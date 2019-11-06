@@ -6,6 +6,9 @@
 package SaveAs;
 
 import Editor.Text;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 
 /**
  *
@@ -14,9 +17,20 @@ import Editor.Text;
 public class JSON implements ISaveAS{
 
     @Override
-    public void save(Text text) {
-        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void save(Text text, String route) {
+        try {
+            File file = new File("src/"+route+".json");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            String textString = "{\"text\":" + "\""+text.getWords() + "\"}";
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(textString);
+            bw.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
 }

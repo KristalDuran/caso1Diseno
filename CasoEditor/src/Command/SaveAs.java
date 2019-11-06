@@ -16,14 +16,17 @@ public class SaveAs implements ICommand{
     
     private Context context;
     private Text text;
+    private String route;
 
-    public SaveAs(Context context, Text text) {
+    public SaveAs(Context context, Text text, String route) {
         this.context = context;
         this.text = text;
+        this.route = route;
     }
     
     @Override
     public void execute() {
-        context.save(text);
+        System.out.println("t " + text.getWords() + " " + route);
+        context.save(text, route);
     }
 }

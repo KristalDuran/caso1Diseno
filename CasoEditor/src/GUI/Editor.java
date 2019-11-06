@@ -5,16 +5,23 @@
  */
 package GUI;
 
+import Editor.Controller;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kduran
  */
 public class Editor extends javax.swing.JFrame {
 
+    Controller controller;
     /**
      * Creates new form Editor
      */
     public Editor() {
+        controller = new Controller();
         initComponents();
     }
 
@@ -63,6 +70,11 @@ public class Editor extends javax.swing.JFrame {
         jButton3.setText("Save");
 
         jButton4.setText("Save as");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Undo");
 
@@ -75,8 +87,18 @@ public class Editor extends javax.swing.JFrame {
         jButton11.setText("Cortar");
 
         jButton12.setText("Resaltar");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton13.setText("Color");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -155,6 +177,28 @@ public class Editor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        controller.getText().addWord(jTextField1.getText());
+        SaveAsOptions saveAs = new SaveAsOptions(controller);
+        saveAs.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+        ColorText color = new ColorText(controller, this);
+        color.setVisible(true);
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // Resaltar
+        Font font = new Font(jTextField1.getText(), Font.BOLD, 12);
+        jTextField1.setFont(font);
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    public void setColorText(Color color){
+        jTextField1.setForeground(color);
+    }
+    
     /**
      * @param args the command line arguments
      */

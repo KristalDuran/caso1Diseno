@@ -12,5 +12,5 @@ import Editor.Text;
  * @author kduran
  */
 public interface ISaveAS {
-    public void save(Text text);
+    public void save(Text text, String route);
 }
