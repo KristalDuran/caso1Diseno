@@ -6,6 +6,9 @@
 package SaveAs;
 
 import Editor.Text;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 
 /**
  *
@@ -14,8 +17,19 @@ import Editor.Text;
 public class XML implements ISaveAS{
 
     @Override
-    public void save(Text text) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void save(Text text, String route) {
+        try {
+            File file = new File("src/"+route+".xml");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(text.getWords());
+            bw.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
 }

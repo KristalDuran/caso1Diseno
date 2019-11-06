@@ -26,6 +26,7 @@ public class Controller {
     Text text;
     ISaveAS saveAs;
     Context context;
+    String route;
     
     public Controller() {
         invoker = new Invoker();
@@ -38,6 +39,7 @@ public class Controller {
     }
 
     public void setSaveAs(String type){
+        System.out.println("SaveAs: " + type);
         switch(type) {
             case "csv":
                 saveAs = new CSV();
@@ -55,7 +57,16 @@ public class Controller {
         context.setSaveAs(saveAs);
     }
     
+    public Context getContext(){
+        return context;
+    }
+    
+    public void setRoute(String route){
+        this.route = route;
+    }
+    
     public void execute(String command) {
+        System.out.println("command: " + command);
         switch(command) {
             case "copy":
                 invoker.registerCommand(new Copy());
@@ -79,7 +90,7 @@ public class Controller {
                 invoker.registerCommand(new Save(text));
                 break;
             case "saveAs":
-                invoker.registerCommand(new SaveAs(context, text));
+                invoker.registerCommand(new SaveAs(context, text, route));
                 break;
             case "new":
                 invoker.registerCommand(new Create());

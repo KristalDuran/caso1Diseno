@@ -22,7 +22,8 @@ public class Context {
         this.saveAs = saveAs;
     }
     
-    public void save(Text text){
-        saveAs.save(text);
+    public void save(Text text, String route){
+        System.out.println("s" + saveAs);
+        saveAs.save(text, route);
     }
 }

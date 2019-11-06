@@ -12,20 +12,20 @@ import java.util.ArrayList;
  * @author kduran
  */
 public class Text {
-    private ArrayList<String> words;
+    private String words;
     private boolean black;
     private String color;
 
     public Text() {
-        words = new ArrayList<>();
+
     }
 
-    public ArrayList<String> getWords() {
+    public String getWords() {
         return words;
     }
 
     public void addWord(String word) {
-        this.words.add(word);
+        this.words = word;
     }
 
     public boolean isBlack() {

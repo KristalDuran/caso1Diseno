@@ -5,16 +5,21 @@
  */
 package GUI;
 
+import Editor.Controller;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kduran
  */
 public class Editor extends javax.swing.JFrame {
 
+    Controller controller;
     /**
      * Creates new form Editor
      */
     public Editor() {
+        controller = new Controller();
         initComponents();
     }
 
@@ -63,6 +68,11 @@ public class Editor extends javax.swing.JFrame {
         jButton3.setText("Save");
 
         jButton4.setText("Save as");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Undo");
 
@@ -154,6 +164,12 @@ public class Editor extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        controller.getText().addWord(jTextField1.getText());
+        SaveAsOptions saveAs = new SaveAsOptions(controller);
+        saveAs.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
