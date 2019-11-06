@@ -15,6 +15,7 @@ public class Text {
     private ArrayList<String> words;
     private boolean black;
     private String color;
+    
 
     public Text() {
         words = new ArrayList<>();
@@ -43,7 +44,10 @@ public class Text {
     public void setColor(String color) {
         this.color = color;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Text{" + "words=" + words + ", black=" + black + ", color=" + color + '}';
+    }
     
 }
