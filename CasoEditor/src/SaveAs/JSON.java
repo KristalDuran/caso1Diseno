@@ -19,11 +19,11 @@ public class JSON implements ISaveAS{
     @Override
     public void save(Text text, String route) {
         try {
-            File file = new File("src/"+route+".json");
+            File file = new File("src/Files/"+route+".json");
             if (!file.exists()) {
                 file.createNewFile();
             }
-            String textString = "{\"text\":" + "\""+text.getWords() + "\"}";
+            String textString = text.getWords();
             FileWriter fw = new FileWriter(file);
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(textString);

@@ -19,7 +19,7 @@ public class CSV implements ISaveAS{
     @Override
     public void save(Text text, String route) {
         try {
-            File file = new File("src/"+route+".csv");
+            File file = new File("src/Files/"+route+".csv");
             if (!file.exists()) {
                 file.createNewFile();
             }

@@ -19,7 +19,7 @@ public class TXT implements ISaveAS{
     @Override
     public void save(Text text, String route) {
         try {
-            File file = new File("src/"+route+".txt");
+            File file = new File("src/Files/"+route+".txt");
             if (!file.exists()) {
                 file.createNewFile();
             }

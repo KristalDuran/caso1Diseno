@@ -19,7 +19,7 @@ public class XML implements ISaveAS{
     @Override
     public void save(Text text, String route) {
         try {
-            File file = new File("src/"+route+".xml");
+            File file = new File("src/Files/"+route+".xml");
             if (!file.exists()) {
                 file.createNewFile();
             }

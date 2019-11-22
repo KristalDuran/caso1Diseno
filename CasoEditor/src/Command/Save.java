@@ -6,6 +6,12 @@
 package Command;
 
 import Editor.Text;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,13 +20,26 @@ import Editor.Text;
 public class Save implements ICommand{
     
     Text text;
+    String route;
 
-    public Save(Text text) {
+    public Save(Text text, String route) {
         this.text = text;
+        this.route = route;
     }
     
     @Override
     public void execute() {
-        
+        try {
+        File file = new File("src/Files/"+route);
+            if (file.exists()) {
+                String textString = text.getWords();
+                FileWriter fw = new FileWriter(file);
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write(textString);
+                bw.close();
+            }
+        } catch (IOException ex) {
+                Logger.getLogger(Save.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
 }

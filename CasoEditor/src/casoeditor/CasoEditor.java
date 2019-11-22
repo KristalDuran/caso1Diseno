@@ -8,6 +8,7 @@ package casoeditor;
 import Editor.CareTaker;
 import Editor.Originator;
 import Editor.Text;
+import GUI.Editor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
@@ -23,9 +24,12 @@ public class CasoEditor {
      */
     
     public static CareTaker caretaker = new CareTaker();
-    
+    public static Editor editor = new Editor();
     
     public static void main(String[] args) {
+        
+    
+        editor.setVisible(true);
         // TODO code application logic here
         
         
@@ -67,7 +71,6 @@ public class CasoEditor {
     //undo deshacer
     //redo rehacer
     //colocar el guardar estado despues de presionar cada boton
-    
     
     
     

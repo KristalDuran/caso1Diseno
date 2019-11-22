@@ -13,13 +13,13 @@ public class Copy implements ICommand{
     
     private String text;
 
-    public Copy() {
+    public Copy(String text) {
         this.text = text;
     }
     
     @Override
     public void execute() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
 }
