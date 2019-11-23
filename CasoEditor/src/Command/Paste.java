@@ -5,15 +5,27 @@
  */
 package Command;
 
+import Editor.Text;
+
 /**
  *
  * @author kduran
  */
 public class Paste implements ICommand{
 
+    String textCopy;
+    Text text;
+
+    public Paste(String textCopy, Text text) {
+        this.textCopy = textCopy;
+        this.text = text;
+    }
+    
     @Override
     public void execute() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(textCopy != null){
+            this.text.addWord(this.text.getWords()+textCopy);
+        }
     }
     
 }

@@ -19,7 +19,7 @@ public class Copy implements ICommand{
     
     @Override
     public void execute() {
-        
+        System.out.println("Texto copiado " + text);
     }
     
 }

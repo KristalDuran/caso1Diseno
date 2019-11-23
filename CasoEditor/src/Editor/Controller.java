@@ -119,7 +119,7 @@ public class Controller {
                 invoker.registerCommand(new Copy(textCopy));
                 break;
             case "paste":
-                invoker.registerCommand(new Paste());
+                invoker.registerCommand(new Paste(textCopy, text));
                 break;
             case "cut":
                 invoker.registerCommand(new Cut());

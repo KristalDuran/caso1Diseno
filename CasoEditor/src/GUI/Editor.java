@@ -98,6 +98,11 @@ public class Editor extends javax.swing.JFrame {
         });
 
         jButton8.setText("Pegar");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton11.setText("Cortar");
 
@@ -263,8 +268,16 @@ public class Editor extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
         String textCopy = jTextField1.getSelectedText();
+        controller.setTextCopy(textCopy);
         controller.execute("copy");
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        controller.getText().addWord(jTextField1.getText());
+        controller.execute("paste");
+        jTextField1.setText(controller.getText().getWords());
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     public void setColorText(Color color){
         jTextField1.setForeground(color);
